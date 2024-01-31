@@ -1,0 +1,16 @@
+<div class="layout-wrapper" (click)="onLayoutClick()">
+   
+    <app-ltopbar></app-ltopbar>
+    <div class="layout-main">
+        <!--<app-breadcrumb></app-breadcrumb>-->
+
+        <div class="layout-content">
+            <router-outlet></router-outlet>
+        </div>
+
+        <app-footer></app-footer>
+    </div>
+
+    <app-config></app-config>
+
+</div>
