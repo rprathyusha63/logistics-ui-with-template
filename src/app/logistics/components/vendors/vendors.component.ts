@@ -5,6 +5,11 @@ import { MessageService } from 'primeng/api';
 import { VendorListResponse } from '../../models/vendor-list-response.model';
 import { VendorDataService } from '../../services/vendor-data.service';
 import { Vendor } from '../../models/vendor.model';
+import { VendorProductsDataService } from '../../services/vendor-products-data.service';
+import { UserDataService } from '../../services/user-data.service';
+import { User } from '../../models/user.model';
+import { WarehouseDataService } from '../../services/warehouse-data.service';
+import { WarehouseListResponse } from '../../models/warehouse-list-response.model';
 
 @Component({
   selector: 'app-vendors',
@@ -14,25 +19,32 @@ import { Vendor } from '../../models/vendor.model';
 export class VendorsComponent implements OnInit {
 
   vendors: VendorListResponse[] = [];
+  warehouses: WarehouseListResponse[] = [];
     loading: boolean = false;
     display: boolean = false;
     createdBy: string = "Bhanu Kandregula";
-    //dropdownControl: FormControl = new FormControl();
-    dropdownInterviewResults = [{name: 'Selected'}, {name: 'Not Selected'}, {name: 'In Hold'}, {name: 'Schedule Another Round'} ];
-    selectedInterviewResult: any = null;
-
+    user:User;
   constructor(
       public vendorService: VendorDataService,
       private messageService: MessageService,
       public router: Router,
+      public vendorProductService: VendorProductsDataService,
+      public userService: UserDataService,
+      public warehouseService: WarehouseDataService
       //private fb: FormBuilder,
   ) { }
 
 
   ngOnInit() {
+    this.user = this.userService.getAuthenticaedUser()
+    this.getAllWarehouses();
       this.fetchVendorsList();
   }
-
+getAllWarehouses(){
+  this.warehouseService.getAllWarehouses().subscribe(success =>{
+    this.warehouses=success;
+  })
+}
 
 fetchVendorsList() {
     this.vendorService.getAllVendors().subscribe( response => {
@@ -45,12 +57,12 @@ getRowIndex(rowIndex: number): number {
     return rowIndex + 1;
 }
 
-onRowClick(vendor: Vendor)  {
-    const interviewId = vendor.vendorId;
-    console.log("This is the clicked interview ID: ",interviewId);
+onRowClick(vendor: VendorListResponse)  {
+    const vendorId = vendor.body.vendorId;
+    console.log("This is the clicked vendor: ",vendorId);
 
-    //this.vendorService.setSelectedInterview(interviewId);
-    this.router.navigate(['/iinterviews', interviewId]);
+    this.vendorProductService.setVendorId(vendorId);
+    this.router.navigate(['/productsForVendor']);
 }
 
 showSuccessToastAndRoute() {

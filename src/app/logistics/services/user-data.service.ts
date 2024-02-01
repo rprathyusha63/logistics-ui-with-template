@@ -6,15 +6,19 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { DecodedToken } from '../models/decoded-token';
+import { User } from '../models/user.model';
+import { environment } from '../environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserDataService {
-
+  backendUrl = environment.baseUrl;
   private tokenTimer: any;
   private isAuthenticated = false;
+  private authenticatedUserEmail:string;
+  private authenticatedUser:User;
   private token: string | undefined;
   public authStatusListener = new Subject<boolean>();
   private jwtHelper = new JwtHelperService();
@@ -38,7 +42,7 @@ export class UserDataService {
 
   login(authTokenRequest: AuthTokenRequest) {
     console.log(authTokenRequest)
-    this.http.post<AuthTokenResponse>(`http://localhost:8080/auth/login`, authTokenRequest)
+    this.http.post<AuthTokenResponse>(`${this.backendUrl}/auth/login`, authTokenRequest)
       .subscribe({
         next: (response) => {
 
@@ -53,6 +57,8 @@ export class UserDataService {
             this.setAuthTimer(expiredInDuration);
 
             this.isAuthenticated = true;
+            this.authenticatedUserEmail=response.email;
+            this.setAuthenticatedUser();
             this.authStatusListener.next(true);
 
             const now = new Date();
@@ -86,7 +92,18 @@ export class UserDataService {
   getIsAuthenticated() {
     return this.isAuthenticated;
   }
-
+  getAuthenticatedUserEmail(){
+    return this.authenticatedUserEmail;
+  }
+  setAuthenticatedUser(){
+    this.http.get<User>(`${this.backendUrl}/users/${this.authenticatedUserEmail}`, this.httpOptions)
+    .subscribe(success => {
+      this.authenticatedUser=success;
+    });
+  }
+  getAuthenticaedUser(){
+    return this.authenticatedUser;
+  }
   getDecodedTokenValues() {
     if(this.token){
       console.log(this.jwtHelper.decodeToken(this.token));

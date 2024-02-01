@@ -33,6 +33,7 @@ import {AppWizardComponent} from './pages/app.wizard.component';
 import {BlocksComponent} from './blocks/blocks/blocks.component';
 import { LoginComponent } from './logistics/components/login/login.component';
 import { VendorsComponent } from './logistics/components/vendors/vendors.component';
+import { VendorProductsComponent } from './logistics/components/vendor-products/vendor-products.component';
 
 @NgModule({
     imports: [
@@ -69,6 +70,7 @@ import { VendorsComponent } from './logistics/components/vendors/vendors.compone
                 ]
             },
             {path: 'vendors', component: VendorsComponent},
+            {path:'productsForVendor' , component:VendorProductsComponent},
             {path: 'error', component: AppErrorComponent},
             {path: 'access', component: AppAccessdeniedComponent},
             {path: 'notfound', component: AppNotfoundComponent},

@@ -156,6 +156,7 @@ import { VendorsComponent } from './logistics/components/vendors/vendors.compone
 import { MessageService } from 'primeng/api';
 import { TopbarComponent } from './logistics/components/topbar/topbar.component';
 import { LogisticsInterceptorInterceptor } from './logistics/interceptors/logistics-interceptor.interceptor';
+import { VendorProductsComponent } from './logistics/components/vendor-products/vendor-products.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -298,6 +299,7 @@ FullCalendarModule.registerPlugins([
         LoginComponent,
         VendorsComponent,
         TopbarComponent,
+        VendorProductsComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

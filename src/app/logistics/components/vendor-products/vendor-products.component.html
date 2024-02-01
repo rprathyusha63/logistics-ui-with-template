@@ -1,0 +1,63 @@
+<br/>
+<div class=" header surface-card p-4 shadow-2 border-round"> 
+<h4>Products for vendor: {{vendor.businessName}} </h4>
+    <p-table
+        [value]="vendorProducts"
+        [rowHover]="true"
+        [rows]="20"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[20, 25, 30]"
+        [paginator]="true"
+
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">Product Model</div>
+                </th>
+
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">Category Name</div>
+                </th>
+
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">Brand</div>
+                </th>
+
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">Size</div>
+                </th>
+
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">SKU Number</div>
+                </th>
+
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">Quantity</div>
+                </th>
+
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">Warehouse Name</div>
+                </th>
+
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">Warehouse Plot No</div>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-vendorProduct let-rowIndex="rowIndex">
+            <tr class="clickable-row" (click)="onRowClick(vendorProduct)">
+                <td> {{ vendorProduct.body.product.productModel}} </td>
+                <td> {{ vendorProduct.body.product.categoryName }} </td>
+                <td> {{ vendorProduct.body.product.brand }} </td>
+                <td> {{ vendorProduct.body.product.size }}</td>
+                <td> {{ vendorProduct.body.product.skuNumber }}</td>
+                <td> {{ vendorProduct.body.quantity }} </td>
+                <td> {{ vendorProduct.body.vendor.warehouse.warehouseName }}</td>
+                <td> {{ vendorProduct.body.product_warehouse_plot }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<br>
+<p-toast></p-toast>
