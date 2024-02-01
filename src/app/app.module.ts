@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
@@ -155,6 +155,7 @@ import { LoginComponent } from './logistics/components/login/login.component';
 import { VendorsComponent } from './logistics/components/vendors/vendors.component';
 import { MessageService } from 'primeng/api';
 import { TopbarComponent } from './logistics/components/topbar/topbar.component';
+import { LogisticsInterceptorInterceptor } from './logistics/interceptors/logistics-interceptor.interceptor';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -300,6 +301,11 @@ FullCalendarModule.registerPlugins([
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: LogisticsInterceptorInterceptor,
+            multi: true,
+        },
         CountryService, CustomerService, EventService, IconService, NodeService,
         PhotoService, ProductService, MenuService, BreadcrumbService,MessageService
     ],
