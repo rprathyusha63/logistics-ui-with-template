@@ -42,6 +42,8 @@ import { VendorProductsComponent } from './logistics/components/vendor-products/
                 path: '', component: AppMainComponent,
                 children: [
                     {path: '', component: LoginComponent},
+                    {path: 'vendors', component: VendorsComponent},
+                    {path:'productsForVendor' , component:VendorProductsComponent},
                     {path: 'uikit/formlayout', component: FormLayoutDemoComponent},
                     {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},
                     {path: 'uikit/invalidstate', component: InvalidStateDemoComponent},
@@ -69,8 +71,7 @@ import { VendorProductsComponent } from './logistics/components/vendor-products/
                     {path: 'blocks', component: BlocksComponent},
                 ]
             },
-            {path: 'vendors', component: VendorsComponent},
-            {path:'productsForVendor' , component:VendorProductsComponent},
+      
             {path: 'error', component: AppErrorComponent},
             {path: 'access', component: AppAccessdeniedComponent},
             {path: 'notfound', component: AppNotfoundComponent},

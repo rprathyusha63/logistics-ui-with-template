@@ -24,6 +24,10 @@ export class VendorDataService {
     return this.http.get<VendorListResponse[]>(`${this.backendUrl}/vendors`, this.httpOptions);
   }
 
+  getVendorsByWarehouse(warehouseId:string){
+    return this.http.get<VendorListResponse[]>(`${this.backendUrl}/vendors/findByWarehouseId/${warehouseId}`, this.httpOptions);
+  }
+
   getVendorById(id){
     return this.http.get<Vendor>(`${this.backendUrl}/vendors/${id}`, this.httpOptions);
   }

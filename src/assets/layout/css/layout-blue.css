@@ -175,6 +175,7 @@ a {
 .layout-wrapper .layout-topbar .layout-topbar-logo img {
   margin-top: 7px;
   height: 30px;
+  float:left;
 }
 .layout-wrapper .layout-topbar .layout-menu-button {
   float: left;

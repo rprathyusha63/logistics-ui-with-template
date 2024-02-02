@@ -14,8 +14,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
   userIsAuthenticated: boolean = false;
   decodedToken: string = '';
   userFullObject: string = '';
-  userFirstName: string = '';
-  userLastname: string = '';
+  username:string='';
   private authListerSubs: Subscription;
   constructor(public app: AppComponent,
     public appMain: AppMainComponent,
@@ -26,11 +25,11 @@ export class TopbarComponent implements OnInit, OnDestroy {
 
       this.userIsAuthenticated = isAuthenticated;
       if (isAuthenticated) {
+        console.log('is user authenticated')
         this.decodedToken = this.authService.getDecodedTokenValues();
         this.userFullObject = JSON.stringify(this.decodedToken);
         const userData = JSON.parse(this.userFullObject);
-        this.userFirstName = userData.firstname.trim();
-        this.userLastname = userData.lastname.trim();
+        this.username=this.authService.getUsername();
       }
     });
   }

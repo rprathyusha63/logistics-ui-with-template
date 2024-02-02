@@ -24,6 +24,7 @@ invalidmessageFlag=false;
     private messageService: MessageService) { }
 
   ngOnInit(): void {
+    this.loginService.invalidLogin=undefined;
   }
 handleLogin(){
   this.authTokenRequest= new AuthTokenRequest(this.username, this.password);
@@ -44,19 +45,18 @@ isUserLoggedIn(){
             severity: 'error',
             summary: 'Incorrect password.',
             detail: 'Please re-enter your credentials.',
-            life: 3000
+            life: 1500
         });
-        this.loginService.invalidLogin = false;
-    }
-
-    if(!this.loginService.invalidLogin){
+        this.loginService.invalidLogin = undefined;
+    } else if(!this.loginService.invalidLogin){
      
         this.messageService.add({
             severity: 'success',
             summary: 'Logged in successfully.',
             detail: 'You have successfully logged In.',
-            life: 3000
+            life: 1500
         });
+        this.loginService.invalidLogin = undefined;
     }
   }
 

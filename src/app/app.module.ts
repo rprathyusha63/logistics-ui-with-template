@@ -157,6 +157,7 @@ import { MessageService } from 'primeng/api';
 import { TopbarComponent } from './logistics/components/topbar/topbar.component';
 import { LogisticsInterceptorInterceptor } from './logistics/interceptors/logistics-interceptor.interceptor';
 import { VendorProductsComponent } from './logistics/components/vendor-products/vendor-products.component';
+import { UserDataService } from './logistics/services/user-data.service';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -309,7 +310,7 @@ FullCalendarModule.registerPlugins([
             multi: true,
         },
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService, BreadcrumbService,MessageService
+        PhotoService, ProductService, MenuService, BreadcrumbService,MessageService, UserDataService
     ],
     bootstrap: [AppComponent]
 })

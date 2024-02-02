@@ -20,9 +20,10 @@ export class UserDataService {
   private authenticatedUserEmail:string;
   private authenticatedUser:User;
   private token: string | undefined;
+  private authTokenResponse: AuthTokenResponse;
   public authStatusListener = new Subject<boolean>();
   private jwtHelper = new JwtHelperService();
-  invalidLogin: boolean = false;
+  public invalidLogin: boolean = undefined;
 
   httpOptions = {
     // withCredentials: true,
@@ -41,12 +42,13 @@ export class UserDataService {
   }
 
   login(authTokenRequest: AuthTokenRequest) {
-    console.log(authTokenRequest)
+    console.log('before '+this.invalidLogin)
+    this.invalidLogin=undefined
     this.http.post<AuthTokenResponse>(`${this.backendUrl}/auth/login`, authTokenRequest)
       .subscribe({
         next: (response) => {
-
           console.log("Used logged in successfully", response)
+          this.authTokenResponse = response;
           const token = response.jwttoken;
           console.log('token is '+token)
           this.token = token;
@@ -54,18 +56,20 @@ export class UserDataService {
             
             const expirationDate = this.jwtHelper.getTokenExpirationDate(token)
             const expiredInDuration = 3600;
-            this.setAuthTimer(expiredInDuration);
-
-            this.isAuthenticated = true;
             this.authenticatedUserEmail=response.email;
-            this.setAuthenticatedUser();
+            this.setAuthTimer(expiredInDuration);
+            //this.setAuthenticatedUser()
+            console.log('inside subscribe and after setAUthUser');
+            this.isAuthenticated = true;
+           
             this.authStatusListener.next(true);
 
             const now = new Date();
             //const expirationDate = new Date(now.getTime() + expiredInDuration * 1000);
 
             this.saveAuthData(token, expirationDate);
-
+            this.invalidLogin = false;
+            console.log('after '+this.invalidLogin)
             this.router.navigate(['/vendors']);
           } else {
             console.log("Something is wrong with the token")
@@ -73,18 +77,24 @@ export class UserDataService {
         },
         error: (error) => {
           console.error("Error while logging in: ", error.message)
-          if (error.status === 401) {
+          if (error.status != 200) {
             this.invalidLogin = true;
-          } else {
-            console.error("Other error: ", error.message)
-          }
+          } 
+          console.log('after '+this.invalidLogin)
         },
         complete: () => {
-
+        
         }
       })
   }
 
+  getWarehouse(){
+    return this.authTokenResponse.warehouse;
+  }
+
+  getUsername(){
+    return this.authTokenResponse.username;
+  }
   getToken() {
     return this.token;
   }
@@ -96,12 +106,23 @@ export class UserDataService {
     return this.authenticatedUserEmail;
   }
   setAuthenticatedUser(){
+    console.log('setAuthenticatedUser starting');
     this.http.get<User>(`${this.backendUrl}/users/${this.authenticatedUserEmail}`, this.httpOptions)
     .subscribe(success => {
+      console.log('inside setAuthenticatedUser user ');
+      console.log(success)
       this.authenticatedUser=success;
-    });
+      console.log('setAuthenticatedUser auth user ');
+      console.log(this.authenticatedUser)
+    }, error =>{
+      console.log('inside setAUthUSer error');
+      console.log(error)
+    }
+    );
+    console.log('setAuthenticatedUser before returning');
+    return this.authenticatedUser;
   }
-  getAuthenticaedUser(){
+  getAuthenticatedUser(){
     return this.authenticatedUser;
   }
   getDecodedTokenValues() {

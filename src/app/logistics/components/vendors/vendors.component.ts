@@ -10,6 +10,8 @@ import { UserDataService } from '../../services/user-data.service';
 import { User } from '../../models/user.model';
 import { WarehouseDataService } from '../../services/warehouse-data.service';
 import { WarehouseListResponse } from '../../models/warehouse-list-response.model';
+import { Warehouse } from '../../models/warehouse.model';
+
 
 @Component({
   selector: 'app-vendors',
@@ -20,93 +22,70 @@ export class VendorsComponent implements OnInit {
 
   vendors: VendorListResponse[] = [];
   warehouses: WarehouseListResponse[] = [];
-    loading: boolean = false;
-    display: boolean = false;
-    createdBy: string = "Bhanu Kandregula";
-    user:User;
+  userWarehouseId: string;
+  userWarehouseName: string;
+  selectedWarehouse: Warehouse;
+  dItems:Array<Warehouse>=[];
+
   constructor(
-      public vendorService: VendorDataService,
-      private messageService: MessageService,
-      public router: Router,
-      public vendorProductService: VendorProductsDataService,
-      public userService: UserDataService,
-      public warehouseService: WarehouseDataService
-      //private fb: FormBuilder,
+    public vendorService: VendorDataService,
+    private messageService: MessageService,
+    public router: Router,
+    public vendorProductService: VendorProductsDataService,
+    public userService: UserDataService,
+    public warehouseService: WarehouseDataService
+    //private fb: FormBuilder,
   ) { }
 
 
   ngOnInit() {
-    this.user = this.userService.getAuthenticaedUser()
+   
+    this.selectedWarehouse = this.userService.getWarehouse();
+    this.userWarehouseId = this.selectedWarehouse.warehouseId;
     this.getAllWarehouses();
-      this.fetchVendorsList();
+    //this.fetchVendorsList();
+    this.fetchVendorsListByWarehouseId(this.userWarehouseId);
   }
-getAllWarehouses(){
-  this.warehouseService.getAllWarehouses().subscribe(success =>{
-    this.warehouses=success;
-  })
-}
+  getAllWarehouses() {
+    this.warehouseService.getAllWarehouses().subscribe(success => {
+      this.warehouses = success;
+      for(var wlist of this.warehouses)
+      {
+        this.dItems.push(wlist.body)
+      }
+     
+    })
 
-fetchVendorsList() {
-    this.vendorService.getAllVendors().subscribe( response => {
-      this.vendors= response;
+   
+  }
+
+  fetchVendorsList() {
+    this.vendorService.getAllVendors().subscribe(response => {
+      this.vendors = response;
+    });
+  }
+
+  fetchVendorsListByWarehouseId(warehouseId) {
+    this.vendorService.getVendorsByWarehouse(warehouseId).subscribe(response => {
+      this.vendors = response;
       console.log(this.vendors)
     });
-}
+  }
 
-getRowIndex(rowIndex: number): number {
+  getRowIndex(rowIndex: number): number {
     return rowIndex + 1;
-}
+  }
 
-onRowClick(vendor: VendorListResponse)  {
+  onRowClick(vendor: VendorListResponse) {
     const vendorId = vendor.body.vendorId;
-    console.log("This is the clicked vendor: ",vendorId);
+    console.log("This is the clicked vendor: ", vendorId);
 
     this.vendorProductService.setVendorId(vendorId);
     this.router.navigate(['/productsForVendor']);
-}
+  }
 
-showSuccessToastAndRoute() {
-    this.loading = true;
-
-    this.messageService.add({
-        severity: 'info',
-        summary: 'Please wait...',
-        detail: 'Processing your request.',
-        life: 1000
-    });
-
-    setTimeout(() => {
-
-        this.messageService.add({
-            severity: 'success',
-            summary: 'Interview Created',
-            detail: 'The interview was created successfully.',
-            life: 3000
-        });
-
-        // Wait for the toast to be displayed (you can adjust the delay based on your needs)
-        setTimeout(() => {
-            // Route to the dashboard
-            this.display = false;
-            this.router.navigate(['/iinterviews']);
-        }, 3000);
-
-
-
-    }, 1000);
-
-}
-
-    // @ts-ignore
-    getSeverity(status: string) {
-        switch (status) {
-            case 'Selected':
-                return 'success';
-            case 'Not Selected':
-                return 'danger';
-            case 'In Hold':
-                return 'warning';
-        }
-    }
+  onWarehouseDropdownChange(event) {
+    this.fetchVendorsListByWarehouseId(event.value.warehouseId)
+  }
 }
 
