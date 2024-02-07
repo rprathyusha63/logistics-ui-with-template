@@ -34,6 +34,8 @@ import {BlocksComponent} from './blocks/blocks/blocks.component';
 import { LoginComponent } from './logistics/components/login/login.component';
 import { VendorsComponent } from './logistics/components/vendors/vendors.component';
 import { VendorProductsComponent } from './logistics/components/vendor-products/vendor-products.component';
+import { VendorDetailsComponent } from './logistics/components/vendor-details/vendor-details.component';
+import { ProductDetailsComponent } from './logistics/components/product-details/product-details.component';
 
 @NgModule({
     imports: [
@@ -42,8 +44,10 @@ import { VendorProductsComponent } from './logistics/components/vendor-products/
                 path: '', component: AppMainComponent,
                 children: [
                     {path: '', component: LoginComponent},
-                    {path: 'vendors', component: VendorsComponent},
+                    {path: 'vendors/:all', component: VendorsComponent},
                     {path:'productsForVendor' , component:VendorProductsComponent},
+                    {path:'vendorDetails/:vendorId' , component:VendorDetailsComponent},
+                    {path:'productDetails' , component:ProductDetailsComponent},
                     {path: 'uikit/formlayout', component: FormLayoutDemoComponent},
                     {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},
                     {path: 'uikit/invalidstate', component: InvalidStateDemoComponent},

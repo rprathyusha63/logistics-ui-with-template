@@ -1,6 +1,7 @@
+
 <br/>
 <div class=" header surface-card p-4 shadow-2 border-round"> 
-<h4>Products for vendor: {{vendor.businessName}} </h4>
+<h4>Products</h4>
     <p-table
         [value]="vendorProducts"
         [rowHover]="true"
@@ -13,11 +14,11 @@
         <ng-template pTemplate="header">
             <tr>
                 <th style="min-width:15rem">
-                    <div class="flex align-items-center">Product Model</div>
+                    <div class="flex align-items-center">Product Name</div>
                 </th>
 
                 <th style="min-width:8rem">
-                    <div class="flex align-items-center">Category Name</div>
+                    <div class="flex align-items-center">Category</div>
                 </th>
 
                 <th style="min-width:8rem">
@@ -29,7 +30,7 @@
                 </th>
 
                 <th style="min-width:10rem">
-                    <div class="flex align-items-center">SKU Number</div>
+                    <div class="flex align-items-center">SKU</div>
                 </th>
 
                 <th style="min-width:8rem">

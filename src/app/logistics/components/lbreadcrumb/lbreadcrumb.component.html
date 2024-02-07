@@ -1,0 +1,18 @@
+<br>
+<div *ngIf = 'items.length' class="route-bar">
+    <div class="route-bar-breadcrumb">
+        <li>
+            <a routerLink="/vendors/0">
+                <i class="pi pi-home"></i>
+            </a>
+        </li>
+        <li>/</li>
+        <ng-template ngFor let-item let-last="last" [ngForOf]="items">
+            <li>
+                <a [routerLink]="item.routerLink" *ngIf="item.routerLink" ><u>{{item.label}}</u></a>
+                <ng-container *ngIf="!item.routerLink">{{item.label}}</ng-container>
+            </li>
+            <li *ngIf="!last">/</li>
+        </ng-template>
+    </div>
+</div>

@@ -158,6 +158,11 @@ import { TopbarComponent } from './logistics/components/topbar/topbar.component'
 import { LogisticsInterceptorInterceptor } from './logistics/interceptors/logistics-interceptor.interceptor';
 import { VendorProductsComponent } from './logistics/components/vendor-products/vendor-products.component';
 import { UserDataService } from './logistics/services/user-data.service';
+import { LbreadcrumbComponent } from './logistics/components/lbreadcrumb/lbreadcrumb.component';
+import { LbreadcrumbService } from './logistics/services/lbreadcrumb.service';
+import { DashboardComponent } from './logistics/components/dashboard/dashboard.component';
+import { VendorDetailsComponent } from './logistics/components/vendor-details/vendor-details.component';
+import { ProductDetailsComponent } from './logistics/components/product-details/product-details.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -301,6 +306,10 @@ FullCalendarModule.registerPlugins([
         VendorsComponent,
         TopbarComponent,
         VendorProductsComponent,
+        LbreadcrumbComponent,
+        DashboardComponent,
+        VendorDetailsComponent,
+        ProductDetailsComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
@@ -310,7 +319,8 @@ FullCalendarModule.registerPlugins([
             multi: true,
         },
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService, BreadcrumbService,MessageService, UserDataService
+        PhotoService, ProductService, MenuService, BreadcrumbService,MessageService, UserDataService,
+        LbreadcrumbService
     ],
     bootstrap: [AppComponent]
 })

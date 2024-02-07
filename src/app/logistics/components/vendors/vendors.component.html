@@ -24,7 +24,7 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th style="min-width:15rem">
-                        <div class="flex align-items-center">Vendor Business Name</div>
+                        <div class="flex align-items-center">Name</div>
                     </th>
 
                     <th style="min-width:15rem">
@@ -39,9 +39,9 @@
                         <div class="flex align-items-center">Phone</div>
                     </th>
 
-                    <th style="min-width:15rem">
+                    <!--<th style="min-width:15rem">
                         <div class="flex align-items-center">Warehouse Name</div>
-                    </th>
+                    </th>-->
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-vendor let-rowIndex="rowIndex">
@@ -50,7 +50,7 @@
                     <td> {{ vendor.body.location }} </td>
                     <td> {{ vendor.body.email }} </td>
                     <td> {{ vendor.body.phone }}</td>
-                    <td> {{ vendor.body.warehouse.warehouseName }}</td>
+                    <!--<td> {{ vendor.body.warehouse.warehouseName }}</td>-->
                 </tr>
             </ng-template>
         </p-table>

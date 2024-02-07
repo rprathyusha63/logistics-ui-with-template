@@ -5,6 +5,7 @@ import { UserDataService } from '../../services/user-data.service';
 import { AuthTokenRequest } from '../../models/auth-token-request.model';
 import { NgForm } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { LbreadcrumbService } from '../../services/lbreadcrumb.service';
 
 @Component({
   selector: 'app-login',
@@ -21,10 +22,12 @@ invalidmessageFlag=false;
 
   constructor(private router: Router,
     private loginService: UserDataService,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private breadcrumbService:LbreadcrumbService) { }
 
   ngOnInit(): void {
     this.loginService.invalidLogin=undefined;
+    this.breadcrumbService.setItems([]);
   }
 handleLogin(){
   this.authTokenRequest= new AuthTokenRequest(this.username, this.password);

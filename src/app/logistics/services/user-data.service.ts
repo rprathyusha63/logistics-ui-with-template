@@ -58,7 +58,7 @@ export class UserDataService {
             const expiredInDuration = 3600;
             this.authenticatedUserEmail=response.email;
             this.setAuthTimer(expiredInDuration);
-            //this.setAuthenticatedUser()
+            
             console.log('inside subscribe and after setAUthUser');
             this.isAuthenticated = true;
            
@@ -70,7 +70,8 @@ export class UserDataService {
             this.saveAuthData(token, expirationDate);
             this.invalidLogin = false;
             console.log('after '+this.invalidLogin)
-            this.router.navigate(['/vendors']);
+            this.setAuthenticatedUser()
+           
           } else {
             console.log("Something is wrong with the token")
           }
@@ -89,7 +90,7 @@ export class UserDataService {
   }
 
   getWarehouse(){
-    return this.authTokenResponse.warehouse;
+    return this.authenticatedUser.warehouse;
   }
 
   getUsername(){
@@ -114,6 +115,7 @@ export class UserDataService {
       this.authenticatedUser=success;
       console.log('setAuthenticatedUser auth user ');
       console.log(this.authenticatedUser)
+      this.router.navigate(['/vendors',0]);
     }, error =>{
       console.log('inside setAUthUSer error');
       console.log(error)

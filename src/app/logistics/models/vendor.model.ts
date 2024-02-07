@@ -5,7 +5,7 @@ export class Vendor {
         public vendorId?: number,
         public warehouseId?: String,
         public warehouse?: Warehouse,
-        public businessName?: String,
+        public businessName?: string,
         public type?: String,
         public email?: String,
         public phone?: String,

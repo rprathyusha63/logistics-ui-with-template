@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 //import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { VendorListResponse } from '../../models/vendor-list-response.model';
 import { VendorDataService } from '../../services/vendor-data.service';
@@ -11,6 +11,7 @@ import { User } from '../../models/user.model';
 import { WarehouseDataService } from '../../services/warehouse-data.service';
 import { WarehouseListResponse } from '../../models/warehouse-list-response.model';
 import { Warehouse } from '../../models/warehouse.model';
+import { LbreadcrumbService } from '../../services/lbreadcrumb.service';
 
 
 @Component({
@@ -26,25 +27,35 @@ export class VendorsComponent implements OnInit {
   userWarehouseName: string;
   selectedWarehouse: Warehouse;
   dItems:Array<Warehouse>=[];
-
+all:number;
   constructor(
     public vendorService: VendorDataService,
     private messageService: MessageService,
     public router: Router,
     public vendorProductService: VendorProductsDataService,
     public userService: UserDataService,
-    public warehouseService: WarehouseDataService
+    public warehouseService: WarehouseDataService,
+    public breadcrumbService:LbreadcrumbService,
+    public route:ActivatedRoute
     //private fb: FormBuilder,
   ) { }
 
 
   ngOnInit() {
-   
+   this.all = this.route.snapshot.params['all']
+   if(this.all ==0){
     this.selectedWarehouse = this.userService.getWarehouse();
     this.userWarehouseId = this.selectedWarehouse.warehouseId;
     this.getAllWarehouses();
     //this.fetchVendorsList();
     this.fetchVendorsListByWarehouseId(this.userWarehouseId);
+   } else if(this.all ==1){
+    this.getAllWarehouses();
+    this.fetchVendorsList();
+   }
+    this.breadcrumbService.setItems([
+      {label: 'Vendors', routerLink:['/vendors',0]}
+  ]);
   }
   getAllWarehouses() {
     this.warehouseService.getAllWarehouses().subscribe(success => {
