@@ -2,3 +2,29 @@
     color: #ffffff; /* Change the color of the username */
     font-weight: bold;
 }
+.topbar-img{
+    margin-left: 0px;
+    margin-top: 2px;
+    height: 40px;
+    float: inherit;;
+}
+.topbar-a-icon{
+    display: inline;
+    font-size: larger;
+}
+
+.topbar-icon{
+    display: inline;
+    font-size:larger
+}
+.layout-wrapper .layout-topbar .topbar-menu li a{
+    display: inline;
+}
+
+.top-menubar .p-component{
+    align-items: center;
+    background: transparent !important;
+}
+.p-menuitem-text{
+    color:blue
+}

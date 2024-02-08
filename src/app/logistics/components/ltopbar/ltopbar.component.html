@@ -1,30 +1,42 @@
-<div class="layout-topbar">
+<!--<div class="layout-topbar">
     <div class="justify-content-start">
-    <a href="#" class="layout-topbar-logo">
-        <img id="layout-topbar-logo" src="assets/layout/images/logo.png" alt="babylon-layout"/>
+    <a href="#" >
+        <img class="topbar-img" id="layout-topbar-logo1" src="assets/layout/images/logo.png" alt="babylon-layout"/>
     </a>
 
-    <ul class="topbar-menu fadeInDown" [ngClass]="{'topbar-menu-visible': appMain.topbarMenuActive}">
+    <div class="topbar-menu" *ngIf="items.length">
+        <p-tabMenu [model]="items"></p-tabMenu>
+    </div>
+    <ul class="topbar-menu">
 
         
-        <li #profile class="user-profile"
+        <li #profile 
             *ngIf="userIsAuthenticated  && app.profileMode==='popup'||appMain.isHorizontal()"
-            [ngClass]="{'active-topmenuitem':appMain.activeTopbarItem === profile}">
+           >
             
             <i class="pi pi-user"></i>
-            <span class="topbar-item-name username">{{username}}</span>
+            <span class="username">{{username}}</span>
 
-            <!--<ul class="fadeInDown">
+            <ul class="fadeInDown">
                 <li role="menuitem">-->
-                    <a href="#" (click)="logout()" >
-                        <i class="pi pi-user"></i>
-                        <span class="topbar-item-name  username">Logout</span>
+                    <!--<a href="#" (click)="logout()" class="topbar-a-icon" >
+                        <i class="pi pi-sign-out topbar-icon"></i>
                     </a>
-            <!--    </li>
+            </li>
             </ul>-->
-        </li>
+        <!--</li>
     </ul>
-</div>
+</div>-->
+
+<p-menubar [model]="items" >
+    <ng-template pTemplate="start">
+        <img src="assets/layout/images/logo.png" height="40" class="mr-2" />
+    </ng-template>
+
+    <ng-template pTemplate="end">
+        <a *ngIf='userIsAuthenticated' href="#" (click)="logout()" class="topbar-a-icon" >LOGOUT</a>
+    </ng-template>
+</p-menubar>
 
 
 

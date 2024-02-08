@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { AppComponent } from 'src/app/app.component';
 import { AppMainComponent } from 'src/app/app.main.component';
 import { UserDataService } from '../../services/user-data.service';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-ltopbar',
@@ -16,6 +17,9 @@ export class LtopbarComponent implements OnInit, OnDestroy {
   userFullObject: string = '';
   username:string='';
   private authListerSubs: Subscription;
+  items: MenuItem[] | undefined;
+
+
   constructor(public app: AppComponent,
     public appMain: AppMainComponent,
     public authService: UserDataService) { }
@@ -25,6 +29,11 @@ export class LtopbarComponent implements OnInit, OnDestroy {
 
       this.userIsAuthenticated = isAuthenticated;
       if (isAuthenticated) {
+        this.items = [
+          { label: 'Dashboard'},
+          { label: 'Vendors & Products', routerLink:['/vendors/default']},
+          { label: 'Orders' }
+      ];
         console.log('is user authenticated')
         this.decodedToken = this.authService.getDecodedTokenValues();
         this.userFullObject = JSON.stringify(this.decodedToken);
@@ -41,6 +50,7 @@ export class LtopbarComponent implements OnInit, OnDestroy {
 
   logout() {
     this.authService.logout();
+    this.items=[];
   }
 
 

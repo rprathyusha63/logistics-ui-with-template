@@ -837,14 +837,14 @@ a {
   color: #757575;
 }
 .layout-wrapper .layout-main {
-  padding-top: 60px;
+  padding-top: 0px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 100vh;
 }
 .layout-wrapper .layout-main .layout-content {
-  padding: 16px;
+  padding: 0px;
   flex: 1 1 0;
 }
 
