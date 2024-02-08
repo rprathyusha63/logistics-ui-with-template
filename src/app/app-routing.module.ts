@@ -36,6 +36,7 @@ import { VendorsComponent } from './logistics/components/vendors/vendors.compone
 import { VendorProductsComponent } from './logistics/components/vendor-products/vendor-products.component';
 import { VendorDetailsComponent } from './logistics/components/vendor-details/vendor-details.component';
 import { ProductDetailsComponent } from './logistics/components/product-details/product-details.component';
+import { DashboardComponent } from './logistics/components/dashboard/dashboard.component';
 
 @NgModule({
     imports: [
@@ -44,6 +45,7 @@ import { ProductDetailsComponent } from './logistics/components/product-details/
                 path: '', component: AppMainComponent,
                 children: [
                     {path: '', component: LoginComponent},
+                    {path: 'dashboard', component: DashboardComponent},
                     {path: 'vendors/:all', component: VendorsComponent},
                     {path:'productsForVendor' , component:VendorProductsComponent},
                     {path:'vendorDetails/:vendorId' , component:VendorDetailsComponent},

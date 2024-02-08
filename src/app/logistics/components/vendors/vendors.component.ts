@@ -27,7 +27,7 @@ export class VendorsComponent implements OnInit {
   userWarehouseName: string;
   selectedWarehouse: Warehouse;
   dItems:Array<Warehouse>=[];
-all:number;
+all:string;
   constructor(
     public vendorService: VendorDataService,
     private messageService: MessageService,
@@ -43,18 +43,18 @@ all:number;
 
   ngOnInit() {
    this.all = this.route.snapshot.params['all']
-   if(this.all ==0){
+   if(this.all =='all'){
+    this.getAllWarehouses();
+    this.fetchVendorsList();
+   } else {
     this.selectedWarehouse = this.userService.getWarehouse();
     this.userWarehouseId = this.selectedWarehouse.warehouseId;
     this.getAllWarehouses();
     //this.fetchVendorsList();
     this.fetchVendorsListByWarehouseId(this.userWarehouseId);
-   } else if(this.all ==1){
-    this.getAllWarehouses();
-    this.fetchVendorsList();
-   }
+   }  
     this.breadcrumbService.setItems([
-      {label: 'Vendors', routerLink:['/vendors',0]}
+      {label: 'Vendors', routerLink:['/vendors','default']}
   ]);
   }
   getAllWarehouses() {

@@ -1,15 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AppComponent } from 'src/app/app.component';
 import { AppMainComponent } from 'src/app/app.main.component';
 import { UserDataService } from '../../services/user-data.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-ltopbar',
-  templateUrl: './topbar.component.html',
-  styleUrls: ['./topbar.component.scss']
+  templateUrl: './ltopbar.component.html',
+  styleUrls: ['./ltopbar.component.scss']
 })
-export class TopbarComponent implements OnInit, OnDestroy {
+export class LtopbarComponent implements OnInit, OnDestroy {
 
   userIsAuthenticated: boolean = false;
   decodedToken: string = '';

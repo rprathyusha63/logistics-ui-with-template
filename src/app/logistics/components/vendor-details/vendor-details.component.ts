@@ -27,7 +27,7 @@ export class VendorDetailsComponent implements OnInit {
     this.vendorService.getVendorById(this.vendorId).subscribe(response => {
       this.vendor = response;
       this.breadcrumbService.setItems([
-        {label: 'Vendors', routerLink:['/vendors',1]},
+        {label: 'Vendors', routerLink:['/vendors','all']},
         {label: this.vendor.businessName}
     ]); 
   });

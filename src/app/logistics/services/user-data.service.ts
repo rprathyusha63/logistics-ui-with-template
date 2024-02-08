@@ -115,7 +115,8 @@ export class UserDataService {
       this.authenticatedUser=success;
       console.log('setAuthenticatedUser auth user ');
       console.log(this.authenticatedUser)
-      this.router.navigate(['/vendors',0]);
+      this.router.navigate(['/vendors','default']);
+      //this.router.navigate(['/dashboard']);
     }, error =>{
       console.log('inside setAUthUSer error');
       console.log(error)

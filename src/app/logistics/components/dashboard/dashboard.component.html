@@ -1,1 +1,20 @@
-<p>dashboard works!</p>
+<!--<div class="card" *ngIf="this.isUserAuthenticated">
+    <app-lbreadcrumb></app-lbreadcrumb>
+    <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
+    
+</div>-->
+
+<div class="card"  *ngIf="this.isUserAuthenticated">
+<p-tabView>
+<p-tabPanel header="Dashboard">
+   
+</p-tabPanel>
+<p-tabPanel header="Vendors & Products">
+   <app-vendors></app-vendors>
+</p-tabPanel>
+<p-tabPanel header="Orders">
+   
+</p-tabPanel>
+
+</p-tabView>
+</div>

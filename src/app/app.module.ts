@@ -154,7 +154,6 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { LoginComponent } from './logistics/components/login/login.component';
 import { VendorsComponent } from './logistics/components/vendors/vendors.component';
 import { MessageService } from 'primeng/api';
-import { TopbarComponent } from './logistics/components/topbar/topbar.component';
 import { LogisticsInterceptorInterceptor } from './logistics/interceptors/logistics-interceptor.interceptor';
 import { VendorProductsComponent } from './logistics/components/vendor-products/vendor-products.component';
 import { UserDataService } from './logistics/services/user-data.service';
@@ -163,6 +162,7 @@ import { LbreadcrumbService } from './logistics/services/lbreadcrumb.service';
 import { DashboardComponent } from './logistics/components/dashboard/dashboard.component';
 import { VendorDetailsComponent } from './logistics/components/vendor-details/vendor-details.component';
 import { ProductDetailsComponent } from './logistics/components/product-details/product-details.component';
+import { LtopbarComponent } from './logistics/components/ltopbar/ltopbar.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -304,12 +304,12 @@ FullCalendarModule.registerPlugins([
         BlocksComponent,
         LoginComponent,
         VendorsComponent,
-        TopbarComponent,
         VendorProductsComponent,
         LbreadcrumbComponent,
         DashboardComponent,
         VendorDetailsComponent,
         ProductDetailsComponent,
+        LtopbarComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
