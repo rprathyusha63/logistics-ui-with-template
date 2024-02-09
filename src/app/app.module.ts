@@ -163,6 +163,7 @@ import { DashboardComponent } from './logistics/components/dashboard/dashboard.c
 import { VendorDetailsComponent } from './logistics/components/vendor-details/vendor-details.component';
 import { ProductDetailsComponent } from './logistics/components/product-details/product-details.component';
 import { LtopbarComponent } from './logistics/components/ltopbar/ltopbar.component';
+import { OrdersComponent } from './logistics/components/orders/orders.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -310,6 +311,7 @@ FullCalendarModule.registerPlugins([
         VendorDetailsComponent,
         ProductDetailsComponent,
         LtopbarComponent,
+        OrdersComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

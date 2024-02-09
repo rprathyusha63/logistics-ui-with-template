@@ -32,7 +32,7 @@ export class LtopbarComponent implements OnInit, OnDestroy {
         this.items = [
           { label: 'Dashboard'},
           { label: 'Vendors & Products', routerLink:['/vendors/default']},
-          { label: 'Orders' }
+          { label: 'Orders', routerLink:['/orders'] }
       ];
         console.log('is user authenticated')
         this.decodedToken = this.authService.getDecodedTokenValues();

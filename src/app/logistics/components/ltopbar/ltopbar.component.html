@@ -27,16 +27,20 @@
         <!--</li>
     </ul>
 </div>-->
-
+<div class="layout-topbar-test">
 <p-menubar [model]="items" >
     <ng-template pTemplate="start">
         <img src="assets/layout/images/logo.png" height="40" class="mr-2" />
     </ng-template>
 
     <ng-template pTemplate="end">
-        <a *ngIf='userIsAuthenticated' href="#" (click)="logout()" class="topbar-a-icon" >LOGOUT</a>
+        <span class="username">{{username}}</span>
+        &nbsp;&nbsp;&nbsp;
+        <a *ngIf='userIsAuthenticated' href="#" (click)="logout()" class="topbar-a-icon" >Logout</a>
     </ng-template>
 </p-menubar>
+</div>
+
 
 
 

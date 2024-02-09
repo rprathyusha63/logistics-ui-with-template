@@ -1,0 +1,65 @@
+
+
+<div class=" header surface-card p-4 shadow-2 border-round"> 
+    <h4>Orders</h4>
+        <p-table
+            [value]="orders"
+            [rowHover]="true"
+            [rows]="20"
+            [showCurrentPageReport]="true"
+            [rowsPerPageOptions]="[20, 25, 30]"
+            [paginator]="true"
+    
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="min-width:15rem">
+                        <div class="flex align-items-center">Order ID</div>
+                    </th>
+    
+                    <th style="min-width:8rem">
+                        <div class="flex align-items-center">Warehouse Name</div>
+                    </th>
+    
+                    <th style="min-width:8rem">
+                        <div class="flex align-items-center">Vendor Name</div>
+                    </th>
+    
+                    <th style="min-width:8rem">
+                        <div class="flex align-items-center">Product</div>
+                    </th>
+    
+                    <th style="min-width:10rem">
+                        <div class="flex align-items-center">Accessorial</div>
+                    </th>
+    
+                    <th style="min-width:8rem">
+                        <div class="flex align-items-center">Total Price</div>
+                    </th>
+    
+                    <th style="min-width:15rem">
+                        <div class="flex align-items-center">Shipping Address</div>
+                    </th>
+    
+                    <th style="min-width:15rem">
+                        <div class="flex align-items-center">Status</div>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-order let-rowIndex="rowIndex">
+                <tr class="clickable-row" (click)="onRowClick(order)">
+                    <td> {{ order.body.orderId}} </td>
+                    <td> {{ order.body.warehouse.warehouseName }} </td>
+                    <td> {{ order.body.vendor.businessName }} </td>
+                    <td> {{ order.body.product.productModel }}</td>
+                    <td> {{ order.body.accessorials.accessorialType }}</td>
+                    <td> {{ order.body.totalPrice }} USD</td>
+                    <td> {{ order.body.shippingAddress }}</td>
+                    <td> {{ order.body.status }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <br>
+    <p-toast></p-toast>
+    

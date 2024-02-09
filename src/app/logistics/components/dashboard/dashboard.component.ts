@@ -16,26 +16,26 @@ isUserAuthenticated:boolean;
 
     tabs: { title: string, content: string }[] = [];
 
-    ngOnInit() {
+   /* ngOnInit() {
       this.isUserAuthenticated = this.userService.getIsAuthenticated()
         this.tabs = [
             { title: 'Tab 1', content: 'Tab 1 Content'},
             { title: 'Tab 2', content: 'Tab 2 Content' },
             { title: 'Tab 3', content: 'Tab 3 Content' }
         ];
-    }
+    }*/
 
     constructor(private router:Router,
       private userService: UserDataService){}
 
-    /*ngOnInit() {
+    ngOnInit() {
       this.isUserAuthenticated = this.userService.getIsAuthenticated()
       console.log('inside dashboard init '+this.isUserAuthenticated)
-        this.items = [*/
-            /*{ label: 'Vendors', icon: 'pi pi-fw pi-home', command: () => {
+        this.items = [
+            { label: 'Vendors', icon: 'pi pi-fw pi-home', command: () => {
               this.router.navigate(["./vendors/default"])
-            } },*/
-            /*{ label: 'Vendors', icon: 'pi pi-fw pi-home', routerLink: ["/vendors/default"]
+            } },
+            { label: 'Vendors', icon: 'pi pi-fw pi-home', routerLink: ["/vendors/default"]
             },
             { label: 'Calendar', icon: 'pi pi-fw pi-calendar' },
             { label: 'Edit', icon: 'pi pi-fw pi-pencil' },
@@ -45,6 +45,6 @@ isUserAuthenticated:boolean;
         
         
         this.activeItem = this.items[0];
-    }*/
+    }
 
 }
