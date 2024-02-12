@@ -1,6 +1,7 @@
 .username {
-    color: black; /* Change the color of the username */
+    color: white; /* Change the color of the username */
     font-size: large;
+    font-weight:normal
 }
 .topbar-img{
     margin-left: 0px;
@@ -14,4 +15,6 @@
     color: blue; 
     font-weight: bold;
 }
-
+.logout-icon{
+    color:white;
+}

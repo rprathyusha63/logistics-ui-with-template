@@ -31,8 +31,8 @@ export class VendorProductsComponent implements OnInit {
       success => {
         this.vendor=success;
         this.breadcrumbService.setItems([
-          {label: 'Vendors', routerLink:['/vendors','all']},
-          {label: this.vendor.businessName, routerLink:['/vendorDetails',this.vendor.vendorId]},
+          {label: 'Vendors'},
+          {label: this.vendor.businessName},
           {label: 'Products'}
       ]);
       }

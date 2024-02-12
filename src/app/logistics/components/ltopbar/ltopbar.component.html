@@ -1,12 +1,9 @@
-<!--<div class="layout-topbar">
+<div class="layout-topbar">
     <div class="justify-content-start">
     <a href="#" >
         <img class="topbar-img" id="layout-topbar-logo1" src="assets/layout/images/logo.png" alt="babylon-layout"/>
     </a>
 
-    <div class="topbar-menu" *ngIf="items.length">
-        <p-tabMenu [model]="items"></p-tabMenu>
-    </div>
     <ul class="topbar-menu">
 
         
@@ -14,20 +11,20 @@
             *ngIf="userIsAuthenticated  && app.profileMode==='popup'||appMain.isHorizontal()"
            >
             
-            <i class="pi pi-user"></i>
+            
             <span class="username">{{username}}</span>
-
-            <ul class="fadeInDown">
-                <li role="menuitem">-->
-                    <!--<a href="#" (click)="logout()" class="topbar-a-icon" >
-                        <i class="pi pi-sign-out topbar-icon"></i>
+            &nbsp; &nbsp; &nbsp;
+            
+                    <span  class="username">
+                    <a href="#" (click)="logout()" class="topbar-a-icon" >
+                        <i class="pi pi-sign-out logout-icon"></i>
                     </a>
-            </li>
-            </ul>-->
-        <!--</li>
+                </span>
+           
+       </li>
     </ul>
-</div>-->
-<div class="layout-topbar-test">
+</div>
+<!--<div class="layout-topbar">
 <p-menubar [model]="items" >
     <ng-template pTemplate="start">
         <img src="assets/layout/images/logo.png" height="40" class="mr-2" />
@@ -39,7 +36,7 @@
         <a *ngIf='userIsAuthenticated' href="#" (click)="logout()" class="topbar-a-icon" >Logout</a>
     </ng-template>
 </p-menubar>
-</div>
+</div>-->
 
 
 

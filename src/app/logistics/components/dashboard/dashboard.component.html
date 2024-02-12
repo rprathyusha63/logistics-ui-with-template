@@ -1,20 +1,41 @@
-<!--<div class="card" *ngIf="this.isUserAuthenticated">
-    <app-lbreadcrumb></app-lbreadcrumb>
-    <p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
-    
-</div>-->
+<div class=" full-screen-card1 p-grid p-justify-center p-align-center">
+    <!--<div class="p-col-12 p-md-6 p-lg-4">-->
+        <div class="p-8 pl-8 border-round">
+            <!-- Your card content goes here -->
+            <div class="grid">
+                <div class="col-12 md:col-6 lg:col-3 mr-5">
+                    <div class="clickable-card  surface-card shadow-3 p-3 border-round" (click)="navigateToVendors()">
 
-<!--<div class="card"  *ngIf="this.isUserAuthenticated">
-<p-tabView>
-<p-tabPanel header="Dashboard">
-   
-</p-tabPanel>
-<p-tabPanel header="Vendors & Products">
-   <app-vendors></app-vendors>
-</p-tabPanel>
-<p-tabPanel header="Orders">
-   
-</p-tabPanel>
+                        <div class="flex justify-content-between mb-3">
+                            <div>
+                                <span class="block text-500 font-medium mb-3"></span>
+                                <div class="text-900 font-medium text-xl">Vendors & Products</div>
+                            </div>
+                        </div>
+                        <span class="text-500">Manage Vendors and their products here</span>
+                        
+                        
+                    </div>
+                </div>
 
-</p-tabView>
-</div>-->
+                <div class="col-12 md:col-6 lg:col-3 mr-5">
+                    <div class="clickable-card surface-card shadow-3 p-3 border-round" (click)="navigateToOrders()">
+                        <div class="flex justify-between-center mb-3">
+                            <div>
+                                <span class="block text-500 font-medium mb-3"></span>
+                                <div class="text-900 font-medium text-xl">Orders</div>
+                            </div>
+                        </div>
+                        <span class="text-500 font-medium">Manage orders here</span>
+                    </div>
+                </div>
+            </div>
+        <!--</div>-->
+    </div>
+</div>
+
+
+
+
+<br>
+

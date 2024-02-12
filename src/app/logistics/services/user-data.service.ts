@@ -37,20 +37,16 @@ export class UserDataService {
     private router: Router) { }
 
   getAuthStatusListener() {
-    console.log("getAuthStatusListener status: ", this.authStatusListener);
     return this.authStatusListener.asObservable();
   }
 
   login(authTokenRequest: AuthTokenRequest) {
-    console.log('before '+this.invalidLogin)
     this.invalidLogin=undefined
     this.http.post<AuthTokenResponse>(`${this.backendUrl}/auth/login`, authTokenRequest)
       .subscribe({
         next: (response) => {
-          console.log("Used logged in successfully", response)
           this.authTokenResponse = response;
           const token = response.jwttoken;
-          console.log('token is '+token)
           this.token = token;
           if (token) {
             
@@ -58,18 +54,14 @@ export class UserDataService {
             const expiredInDuration = 3600;
             this.authenticatedUserEmail=response.email;
             this.setAuthTimer(expiredInDuration);
-            
-            console.log('inside subscribe and after setAUthUser');
             this.isAuthenticated = true;
            
             this.authStatusListener.next(true);
 
             const now = new Date();
-            //const expirationDate = new Date(now.getTime() + expiredInDuration * 1000);
-
+            
             this.saveAuthData(token, expirationDate);
             this.invalidLogin = false;
-            console.log('after '+this.invalidLogin)
             this.setAuthenticatedUser()
            
           } else {
@@ -81,7 +73,6 @@ export class UserDataService {
           if (error.status != 200) {
             this.invalidLogin = true;
           } 
-          console.log('after '+this.invalidLogin)
         },
         complete: () => {
         
@@ -107,22 +98,15 @@ export class UserDataService {
     return this.authenticatedUserEmail;
   }
   setAuthenticatedUser(){
-    console.log('setAuthenticatedUser starting');
     this.http.get<User>(`${this.backendUrl}/users/${this.authenticatedUserEmail}`, this.httpOptions)
     .subscribe(success => {
-      console.log('inside setAuthenticatedUser user ');
-      console.log(success)
       this.authenticatedUser=success;
-      console.log('setAuthenticatedUser auth user ');
-      console.log(this.authenticatedUser)
       //this.router.navigate(['/vendors','default']);
       this.router.navigate(['/dashboard']);
     }, error =>{
-      console.log('inside setAUthUSer error');
       console.log(error)
     }
     );
-    console.log('setAuthenticatedUser before returning');
     return this.authenticatedUser;
   }
   getAuthenticatedUser(){
@@ -130,7 +114,6 @@ export class UserDataService {
   }
   getDecodedTokenValues() {
     if(this.token){
-      console.log(this.jwtHelper.decodeToken(this.token));
         return this.jwtHelper.decodeToken(this.token);
     }
     return null;

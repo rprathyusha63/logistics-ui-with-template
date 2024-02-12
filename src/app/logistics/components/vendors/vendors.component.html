@@ -1,12 +1,13 @@
 
-<div class=" header surface-card p-4 shadow-2 border-round">
+<div class=" header surface-card p-6 shadow-2 border-round">
 
     <h4>Vendors</h4>
-    <div class="flex justify-content-end" *ngIf="dItems.length">
+    <div class="flex justify-content-end p-fluid" *ngIf="dItems.length">
         <p-dropdown [options]="dItems" [(ngModel)]="selectedWarehouse" 
         optionLabel="warehouseName" placeholder="Select a Warehouse" 
-        (onChange)="onWarehouseDropdownChange($event)">
+        (onChange)="onWarehouseDropdownChange($event)"  >
             <ng-template pTemplate="selectedWarehouse">
+               
                 <div class="flex align-items-center gap-2" *ngIf="selectedWarehouse">
                     <div>{{ selectedWarehouse.warehouseName }}</div>
                 </div>

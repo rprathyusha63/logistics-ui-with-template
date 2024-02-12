@@ -23,7 +23,7 @@ export class ProductDetailsComponent implements OnInit {
       this.items = this.breadcrumbService.getItems()
       this.items_C.push(this.items[0]);
       this.items_C.push(this.items[1])
-      this.items_C.push({label: 'Products', routerLink:['/productsForVendor']})
+      this.items_C.push({label: 'Products'})
       this.items_C.push({label: this.product.productModel})
       this.items=this.items_C;
       console.log(this.items_C)

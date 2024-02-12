@@ -118,8 +118,9 @@ a {
 
 .layout-wrapper .route-bar {
   min-height: 32px;
-  background:transparent;
+  background:white;
   border-bottom: 0px solid transparent;
+  padding-top:60px;
 }
 .layout-wrapper .route-bar .route-bar-breadcrumb {
   padding: 6px 25px;
@@ -226,7 +227,7 @@ a {
 .layout-wrapper .layout-topbar .topbar-menu {
   float: right;
   padding: 0;
-  margin: 0;
+  margin-top: 10px;
   list-style-type: none;
 }
 .layout-wrapper .layout-topbar .topbar-menu > li {

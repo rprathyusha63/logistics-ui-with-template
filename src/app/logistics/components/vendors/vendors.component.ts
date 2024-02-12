@@ -25,8 +25,8 @@ export class VendorsComponent implements OnInit {
   warehouses: WarehouseListResponse[] = [];
   userWarehouseId: string;
   userWarehouseName: string;
-  selectedWarehouse: Warehouse;
-  dItems:Array<Warehouse>=[];
+  selectedWarehouse: any;
+  dItems:any[]=[];
 all:string;
   constructor(
     public vendorService: VendorDataService,
@@ -54,12 +54,18 @@ all:string;
     this.fetchVendorsListByWarehouseId(this.userWarehouseId);
    }  
     this.breadcrumbService.setItems([
-      {label: 'Vendors', routerLink:['/vendors','default']}
+      {label: 'Vendors'}
   ]);
+  console.log('breadcrumb items')
+  console.log(this.breadcrumbService.getItems())
   }
   getAllWarehouses() {
     this.warehouseService.getAllWarehouses().subscribe(success => {
       this.warehouses = success;
+      let allWarehouse: Warehouse={
+        warehouseName:"All"
+      }
+      this.dItems.push(allWarehouse)
       for(var wlist of this.warehouses)
       {
         this.dItems.push(wlist.body)
@@ -96,7 +102,12 @@ all:string;
   }
 
   onWarehouseDropdownChange(event) {
-    this.fetchVendorsListByWarehouseId(event.value.warehouseId)
+    if(event.value.warehouseName=='All'){
+      this.fetchVendorsList();
+    }
+    else {
+      this.fetchVendorsListByWarehouseId(event.value.warehouseId)
+    }
   }
 }
 
