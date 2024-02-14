@@ -17,6 +17,7 @@ export class VendorProductsComponent implements OnInit {
   vendorId:string;
   vendor:Vendor;
   vendorProducts: VendorProductListResponse[] = [];
+  displaySize:boolean=true;
   constructor(public vendorProductService: VendorProductsDataService,
     public vendorService:VendorDataService, 
     public breadcrumbService: LbreadcrumbService,
@@ -40,6 +41,16 @@ export class VendorProductsComponent implements OnInit {
     this.vendorProductService.getVendorProductsByVendorId().subscribe(
       success =>{
         this.vendorProducts=success;
+        for(var vendorProduct of this.vendorProducts)
+      {
+        if(vendorProduct.body.product.categoryName == 'doorbells')
+         { 
+          this.displaySize=false;
+          console.log('displaysize '+this.displaySize)
+          break;
+         } 
+
+      }
       }
     )
     

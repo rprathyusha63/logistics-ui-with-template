@@ -1,26 +1,18 @@
 
 
 <div class=" header surface-card p-6 shadow-2 border-round"> 
-    <h4>Orders</h4>
-    <div class="flex justify-content-end p-fluid" *ngIf="dItems.length">
-        <p-dropdown [options]="dItems" [(ngModel)]="selectedWarehouse" 
-        optionLabel="warehouseName" placeholder="Select a Warehouse" 
-        (onChange)="onWarehouseDropdownChange($event)"  >
-            <ng-template pTemplate="selectedWarehouse">
-               
-                <div class="flex align-items-center gap-2" *ngIf="selectedWarehouse">
-                    <div>{{ selectedWarehouse.warehouseName }}</div>
-                </div>
-            </ng-template>
-            <ng-template let-warehouse pTemplate="item">
-                <div class="flex align-items-center gap-2">
-                   <div>{{ warehouse.warehouseName }}</div>
-                </div>
-            </ng-template>
-        </p-dropdown>
+    <h4 *ngIf="orders.length!==0">Today's Orders</h4>
+    <div *ngIf="orders.length==0" class="card surface-card shadow-3 p-3 border-round">
+        <div class="flex justify-content-between mb-3">
+            <div>
+                <span class="block text-500 font-medium mb-3"></span>
+                <div class="text-900 font-medium text-xl">No Orders found today</div>
+            </div> 
+        </div>
     </div>
-    <br/>
-        <p-table
+
+    
+        <p-table *ngIf="orders.length!==0"
             [value]="orders"
             [rowHover]="true"
             [rows]="20"
@@ -31,7 +23,7 @@
         >
             <ng-template pTemplate="header">
                 <tr>
-                    <th style="min-width:10rem">
+                    <th style="min-width:15rem">
                         <div class="flex align-items-center">Order ID</div>
                     </th>
     
@@ -43,7 +35,7 @@
                         <div class="flex align-items-center">Vendor Name</div>
                     </th>
     
-                    <th style="min-width:15rem">
+                    <th style="min-width:8rem">
                         <div class="flex align-items-center">Product</div>
                     </th>
     
@@ -55,14 +47,14 @@
                         <div class="flex align-items-center">Total Price</div>
                     </th>
     
-                    <th style="min-width:8rem">
+                    <th style="min-width:15rem">
                         <div class="flex align-items-center">Shipping Address</div>
                     </th>
     
                     <th style="min-width:15rem">
                         <div class="flex align-items-center">Status</div>
                     </th>
-                    <th style="min-width:8rem">
+                    <th style="min-width:15rem">
                         <div class="flex align-items-center">Received On</div>
                     </th>
                 </tr>
@@ -72,18 +64,15 @@
                     <td> {{ order.orderId}} </td>
                     <td> {{ order.warehouse.warehouseName }} </td>
                     <td> {{ order.vendor.businessName }} </td>
-                    <td > {{ order.product.productModel }} <span *ngIf="order.product.categoryName=='shoes'">, Size: {{order.product.size}}</span></td>
+                    <td> {{ order.product.productModel }}</td>
                     <td> {{ order.accessorials.accessorialType }}</td>
                     <td> {{ order.totalPrice }} USD</td>
                     <td> {{ order.shippingAddress }}</td>
-                    <td> {{ order.status }}
-                        <span *ngIf="order.status=='SHIPPED'"><br/>Shipped On: {{order.shippedOn | date}}</span>
-                    </td>
+                    <td> {{ order.status }}</td>
                     <td> {{ order.receivedOn | date }}</td>
                 </tr>
             </ng-template>
         </p-table>
     </div>
-    <br>
-    <p-toast></p-toast>
+
     

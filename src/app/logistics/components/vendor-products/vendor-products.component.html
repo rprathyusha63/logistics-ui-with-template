@@ -68,12 +68,16 @@
                     <div class="flex align-items-center">Category</div>
                 </th>
 
-                <th style="min-width:8rem">
+                <th style="min-width:8rem" >
                     <div class="flex align-items-center">Brand</div>
                 </th>
 
-                <th style="min-width:8rem">
+                <th style="min-width:8rem" *ngIf="this.displaySize ==true">
                     <div class="flex align-items-center">Size</div>
+                </th>
+
+                <th style="min-width:8rem" *ngIf="this.displaySize==false">
+                    <div class="flex align-items-center">Resolution</div>
                 </th>
 
                 <th style="min-width:10rem">
@@ -102,7 +106,8 @@
                 <td> {{ vendorProduct.body.product.productModel}} </td>
                 <td> {{ vendorProduct.body.product.categoryName }} </td>
                 <td> {{ vendorProduct.body.product.brand }} </td>
-                <td> {{ vendorProduct.body.product.size }}</td>
+                <td *ngIf="this.displaySize==true"> {{ vendorProduct.body.product.size }}</td>
+                <td *ngIf="this.displaySize==false"> {{ vendorProduct.body.product.resolution }}</td>
                 <td> {{ vendorProduct.body.product.skuNumber }}</td>
                 <td> {{ vendorProduct.body.product.weight }}</td>
                 <td> {{ vendorProduct.body.product.dimensions }}</td>

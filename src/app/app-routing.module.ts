@@ -38,6 +38,7 @@ import { VendorDetailsComponent } from './logistics/components/vendor-details/ve
 import { ProductDetailsComponent } from './logistics/components/product-details/product-details.component';
 import { DashboardComponent } from './logistics/components/dashboard/dashboard.component';
 import { OrdersComponent } from './logistics/components/orders/orders.component';
+import { TodaysOrdersComponent } from './logistics/components/todays-orders/todays-orders.component';
 
 @NgModule({
     imports: [
@@ -52,6 +53,7 @@ import { OrdersComponent } from './logistics/components/orders/orders.component'
                     {path:'vendorDetails/:vendorId' , component:VendorDetailsComponent},
                     {path:'productDetails' , component:ProductDetailsComponent},
                     {path:'orders' , component:OrdersComponent},
+                    {path:'orders-today' , component:TodaysOrdersComponent},
                     {path: 'uikit/formlayout', component: FormLayoutDemoComponent},
                     {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},
                     {path: 'uikit/invalidstate', component: InvalidStateDemoComponent},

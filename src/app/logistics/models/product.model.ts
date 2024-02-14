@@ -9,5 +9,6 @@ export class Product {
         public dimensions?: String,
         public skuNumber?: String,
         public material?: String,
-        public noOfPieces?: String){}
+        public noOfPieces?: String,
+        public resolution?: String){}
 }

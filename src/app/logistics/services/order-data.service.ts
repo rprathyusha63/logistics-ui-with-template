@@ -23,7 +23,16 @@ export class OrderDataService {
   constructor(private http:HttpClient) { }
 
   getAllOrders(){
-    return this.http.get<OrderList[]>(`${this.backendUrl}/orders`, this.httpOptions);
+    return this.http.get<Order[]>(`${this.backendUrl}/orders`, this.httpOptions);
+  }
+
+  
+  getOrdersByWarehouse(warehouseId:string){
+    return this.http.get<Order[]>(`${this.backendUrl}/orders/warehouse/${warehouseId}`, this.httpOptions);
+  }
+
+  getTodayOrders(){
+    return this.http.get<Order[]>(`${this.backendUrl}/orders/today`, this.httpOptions);
   }
 
   getOrdersById(orderId:string){
