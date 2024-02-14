@@ -38,9 +38,18 @@ export class OrderDataService {
   getOrdersById(orderId:string){
     return this.http.get<Order>(`${this.backendUrl}/orders/${orderId}`, this.httpOptions);
   }
+
+  updateOrder(order:Order){
+    return this.http.put<Order>(`${this.backendUrl}/orders/${order.orderId}`, order, this.httpOptions);
+  }
   setOrderId(orderId:string)
   {
     this.orderId=orderId;
+  }
+
+  getOrderId()
+  {
+    return this.orderId;
   }
 
 }

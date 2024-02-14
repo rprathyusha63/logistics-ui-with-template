@@ -18,6 +18,8 @@ export class VendorProductsComponent implements OnInit {
   vendor:Vendor;
   vendorProducts: VendorProductListResponse[] = [];
   displaySize:boolean=true;
+  displayResolution:boolean=false;
+  displayNoOfPieces:boolean=false;
   constructor(public vendorProductService: VendorProductsDataService,
     public vendorService:VendorDataService, 
     public breadcrumbService: LbreadcrumbService,
@@ -46,8 +48,16 @@ export class VendorProductsComponent implements OnInit {
         if(vendorProduct.body.product.categoryName == 'doorbells')
          { 
           this.displaySize=false;
+          this.displayResolution=true;
           console.log('displaysize '+this.displaySize)
-          break;
+          
+         } 
+         if(vendorProduct.body.product.categoryName == 'cookware')
+         { 
+          this.displaySize=false;
+          this.displayNoOfPieces=true;
+          console.log('displaysize '+this.displaySize)
+          
          } 
 
       }

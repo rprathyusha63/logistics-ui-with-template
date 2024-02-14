@@ -55,9 +55,9 @@ getOrdersByWarehouse(warehouseId:string){
     }
   )
 }
-  onRowClick(order: OrderList){
+  onRowClick(order: Order){
     //console.log(vendorProduct.body.product.productID)
-    this.orderService.setOrderId(order.body.orderId);
+    this.orderService.setOrderId(order.orderId);
     this.router.navigate(['/orderDetails']);
   }
 

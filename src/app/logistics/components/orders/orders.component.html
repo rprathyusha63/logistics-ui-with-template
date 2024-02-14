@@ -77,7 +77,7 @@
                     <td> {{ order.totalPrice }} USD</td>
                     <td> {{ order.shippingAddress }}</td>
                     <td> {{ order.status }}
-                        <span *ngIf="order.status=='SHIPPED'"><br/>Shipped On: {{order.shippedOn | date}}</span>
+                        <span *ngIf="order.status=='SHIPPED'"><br/><small class="small-ltext">Shipped On: {{order.shippedOn | date}}</small></span>
                     </td>
                     <td> {{ order.receivedOn | date }}</td>
                 </tr>

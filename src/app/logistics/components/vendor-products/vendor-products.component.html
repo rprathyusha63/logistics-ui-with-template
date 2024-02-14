@@ -11,11 +11,11 @@
                                 <div class="text-900 font-medium text-xl">Vendor</div>
                             </div>
                         </div>
-                        <span class="text-500">Name : {{vendor.businessName}}</span><br/>
-                        <span class="text-500">Type : {{vendor.type}}</span><br/>
-                        <span class="text-500">Email : {{vendor.email}}</span><br/>
-                        <span class="text-500">Phone : {{vendor.phone}}</span><br/>
-                        <span class="text-500">Location : {{vendor.location}}</span><br/>
+                        <span class="text-700">Name : <b>{{vendor.businessName}}</b></span><br/>
+                        <span class="text-700">Type : {{vendor.type}}</span><br/>
+                        <span class="text-700">Email : {{vendor.email}}</span><br/>
+                        <span class="text-700">Phone : {{vendor.phone}}</span><br/>
+                        <span class="text-700">Location : {{vendor.location}}</span><br/>
                         <span>&nbsp;</span>
                     </div>
                 </div>
@@ -28,12 +28,12 @@
                                 <div class="text-900 font-medium text-xl">Warehouse</div>
                             </div>
                         </div>
-                        <span class="text-500">Name : {{vendor.warehouse.warehouseName}}</span><br/>
-                        <span class="text-500">Manager : {{vendor.warehouse.warehouseManager}}</span><br/>
-                        <span class="text-500">Email : {{vendor.warehouse.email}}</span><br/>
-                        <span class="text-500">Phone : {{vendor.warehouse.phone}}</span><br/>
-                        <span class="text-500">Location : {{vendor.warehouse.location}}</span><br/>
-                        <span class="text-500">Operating Hours : {{vendor.warehouse.warehouseOperatingHours}}</span><br/>
+                        <span class="text-700">Name : <b>{{vendor.warehouse.warehouseName}}</b></span><br/>
+                        <span class="text-700">Manager : {{vendor.warehouse.warehouseManager}}</span><br/>
+                        <span class="text-700">Email : {{vendor.warehouse.email}}</span><br/>
+                        <span class="text-700">Phone : {{vendor.warehouse.phone}}</span><br/>
+                        <span class="text-700">Location : {{vendor.warehouse.location}}</span><br/>
+                        <span class="text-700">Operating Hours : {{vendor.warehouse.warehouseOperatingHours}}</span><br/>
                     </div>
                 </div>
             </div>
@@ -76,8 +76,12 @@
                     <div class="flex align-items-center">Size</div>
                 </th>
 
-                <th style="min-width:8rem" *ngIf="this.displaySize==false">
+                <th style="min-width:8rem" *ngIf="this.displaySize==false && this.displayResolution==true">
                     <div class="flex align-items-center">Resolution</div>
+                </th>
+
+                <th style="min-width:8rem" *ngIf="this.displaySize==false && this.displayNoOfPieces==true">
+                    <div class="flex align-items-center">No of Pieces</div>
                 </th>
 
                 <th style="min-width:10rem">
@@ -89,14 +93,14 @@
                     <div class="flex align-items-center">Weight</div>
                 </th>
 
-                <th style="min-width:15rem">
+                <th style="min-width:18rem">
                     <div class="flex align-items-center">Dimensions</div>
                 </th>
 
                 <th style="min-width:8rem">
                     <div class="flex align-items-center">Quantity</div>
                 </th>
-                <th style="min-width:15rem">
+                <th style="min-width:10rem">
                     <div class="flex align-items-center">Warehouse Plot No</div>
                 </th>
             </tr>
@@ -107,7 +111,8 @@
                 <td> {{ vendorProduct.body.product.categoryName }} </td>
                 <td> {{ vendorProduct.body.product.brand }} </td>
                 <td *ngIf="this.displaySize==true"> {{ vendorProduct.body.product.size }}</td>
-                <td *ngIf="this.displaySize==false"> {{ vendorProduct.body.product.resolution }}</td>
+                <td *ngIf="this.displaySize==false && this.displayResolution==true"> {{ vendorProduct.body.product.resolution }}</td>
+                <td *ngIf="this.displaySize==false && this.displayNoOfPieces==true"> {{ vendorProduct.body.product.noOfPieces }}</td>
                 <td> {{ vendorProduct.body.product.skuNumber }}</td>
                 <td> {{ vendorProduct.body.product.weight }}</td>
                 <td> {{ vendorProduct.body.product.dimensions }}</td>

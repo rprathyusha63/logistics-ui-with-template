@@ -1,1 +1,123 @@
-<p>order-details works!</p>
+<div class="header surface-card p-6 pt-5 shadow-2 border-round" *ngIf='order'>
+    <h4>Order Id #{{order.orderId}} Details</h4>
+    <div class="auto-close alert alert-warning" role="alert" *ngIf="message">{{message}}</div>
+    
+    <div class="card p-fluid">
+        <div class="field grid">
+            <label htmlFor="warehouseName" class="col-12 mb-2 md:col-2 md:mb-0">Warehouse Name</label>
+            <div class="col-12 md:col-4">
+                <input pInputText id="warehouseName" type="text" [readonly]="true" [disabled]="true"  name="warehouseName"
+                [(ngModel)]="order.warehouse.warehouseName"/>
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="vendorName" class="col-12 mb-2 md:col-2 md:mb-0">Vendor Name</label>
+            <div class="col-12 md:col-4">
+                <input pInputText id="vendorName" type="text" [readonly]="true" [disabled]="true"  name="vendorName"
+                [(ngModel)]="order.vendor.businessName"/>
+            </div>
+        </div>
+
+        <div class="field grid">
+            <label htmlFor="productModel" class="col-12 mb-2 md:col-2 md:mb-0">Product</label>
+            <div class="col-12 md:col-4">
+                <input pInputText id="productModel" type="text" [readonly]="true" [disabled]="true"  name="productModel"
+                [(ngModel)]="order.product.productModel"/>
+            </div>
+        </div>
+
+        <div class="field grid">
+            <label htmlFor="accessorialType" class="col-12 mb-2 md:col-2 md:mb-0">Accessorial</label>
+            <div class="col-12 md:col-4">
+                <input pInputText id="accessorialType" type="text" [readonly]="true" [disabled]="true"  name="accessorialType"
+                [(ngModel)]="order.accessorials.accessorialType"/>
+            </div>
+        </div>
+
+        <div class="field grid">
+            <label htmlFor="shippingAddress" class="col-12 mb-2 md:col-2 md:mb-0">Shipping Address</label>
+            <div class="col-12 md:col-4">
+                <input pInputText id="shippingAddress" type="text" [readonly]="true" [disabled]="true"  name="shippingAddress"
+                [(ngModel)]="order.shippingAddress"/>
+            </div>
+        </div>
+
+        <div class="field grid">
+            <label htmlFor="condition" class="col-12 mb-2 md:col-2 md:mb-0">Condition</label>
+            <div class="col-12 md:col-4">
+                <input pInputText id="condition" type="text" [readonly]="true" [disabled]="true"  name="condition"
+                [(ngModel)]="order.condition"/>
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="totalPrice" class="col-12 mb-2 md:col-2 md:mb-0">Total Price ($)</label>
+            <div class="col-12 md:col-4">
+                <input pInputText id="totalPrice" type="text" [readonly]="true" [disabled]="true"  name="totalPrice"
+                [(ngModel)]="order.totalPrice"/>
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="paymentMode" class="col-12 mb-2 md:col-2 md:mb-0">Payment Mode</label>
+            <div class="col-12 md:col-4">
+                <input pInputText id="paymentMode" type="text" [readonly]="true" [disabled]="true"  name="paymentMode"
+                [(ngModel)]="order.paymentMode"/>
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="billingAddress" class="col-12 mb-2 md:col-2 md:mb-0">Billing Address</label>
+            <div class="col-12 md:col-4">
+                <input pInputText id="billingAddress" type="text" [readonly]="true" [disabled]="true"  name="billingAddress"
+                [(ngModel)]="order.billingAddress"/>
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="paymentConfirmationNumber" class="col-12 mb-2 md:col-2 md:mb-0">Payment Confirmation Number</label>
+            <div class="col-12 md:col-4">
+                <input pInputText id="paymentConfirmationNumber" type="text" [readonly]="true" [disabled]="true"  name="paymentConfirmationNumber"
+                [(ngModel)]="order.paymentConfirmationNumber"/>
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="receivedOn" class="col-12 mb-2 md:col-2 md:mb-0">Received On</label>
+            <div class="col-12 md:col-4">
+                <input pInputText id="receivedOn" type="text" [readonly]="true" [disabled]="true"  name="receivedOn"
+                [(ngModel)]="order.receivedOn"/>
+            </div>
+        </div>
+        <div class="field grid" *ngIf="order.processedOn">
+            <label htmlFor="processedOn" class="col-12 mb-2 md:col-2 md:mb-0">Processed On</label>
+            <div class="col-12 md:col-4">
+                <input pInputText id="processedOn" type="text" [readonly]="true" [disabled]="true"  name="processedOn"
+                [(ngModel)]="order.processedOn"/>
+            </div>
+        </div>
+        <div class="field grid" *ngIf="order.shippedOn">
+            <label htmlFor="shippedOn" class="col-12 mb-2 md:col-2 md:mb-0">Shipped On</label>
+            <div class="col-12 md:col-4">
+                <input pInputText id="shippedOn" type="text" [readonly]="true" [disabled]="true"  name="shippedOn"
+                [(ngModel)]="order.shippedOn"/>
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="orderStatus" class="col-12 mb-2 md:col-2 md:mb-0">Status</label>
+            <div class="col-12 md:col-4">
+                <p-dropdown [options]="statuses" [(ngModel)]="order.status" [disabled]="orderStatus=='SHIPPED'"></p-dropdown>
+                <!--<select name="orderStatus" id="#" [(ngModel)]="order.status" >
+                    <option>PENDING</option>
+                    <option value="PROCESSING">PROCESSING</option>
+                    <option value="SHIPPED">SHIPPED</option>
+                </select>-->
+            </div>
+        </div>
+
+    </div >
+    <div *ngIf="!(orderStatus=='SHIPPED')">
+    <button pButton pRipple label="Save" (click)="updateOrder()" class="mr-2 mb-2"></button>
+	<button pButton pRipple label="Cancel" (click)="cancelEditOperation()" class="mr-2 mb-2"></button>
+    </div>
+    <!--<div class="form-group row">
+    <button class="btn btn-success btn-lg  col-sm-1 mr-1" (click)="updateCustomer()">Save</button>
+    <button class="btn btn-warning btn-lg  col-sm-1" (click)="cancelEditOperation()">Cancel</button>
+
+    </div> -->   
+</div>

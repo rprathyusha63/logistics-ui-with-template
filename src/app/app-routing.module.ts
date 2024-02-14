@@ -39,6 +39,7 @@ import { ProductDetailsComponent } from './logistics/components/product-details/
 import { DashboardComponent } from './logistics/components/dashboard/dashboard.component';
 import { OrdersComponent } from './logistics/components/orders/orders.component';
 import { TodaysOrdersComponent } from './logistics/components/todays-orders/todays-orders.component';
+import { OrderDetailsComponent } from './logistics/components/order-details/order-details.component';
 
 @NgModule({
     imports: [
@@ -54,6 +55,7 @@ import { TodaysOrdersComponent } from './logistics/components/todays-orders/toda
                     {path:'productDetails' , component:ProductDetailsComponent},
                     {path:'orders' , component:OrdersComponent},
                     {path:'orders-today' , component:TodaysOrdersComponent},
+                    {path:'orderDetails' , component:OrderDetailsComponent},
                     {path: 'uikit/formlayout', component: FormLayoutDemoComponent},
                     {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},
                     {path: 'uikit/invalidstate', component: InvalidStateDemoComponent},
