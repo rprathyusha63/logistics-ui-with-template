@@ -16,7 +16,8 @@ export class OrderDataService {
     // withCredentials: true,
     headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        
     }),
 }
 
@@ -50,6 +51,11 @@ export class OrderDataService {
   getOrderId()
   {
     return this.orderId;
+  }
+
+  getBarcode(id:string){
+    const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+    return this.http.get(`${this.backendUrl}/orders/barcode/${id}`, {responseType:'blob'});
   }
 
 }
