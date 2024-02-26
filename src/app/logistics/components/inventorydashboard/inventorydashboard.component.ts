@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuItem } from 'primeng/api';
 import { UserDataService } from '../../services/user-data.service';
 import { LbreadcrumbService } from '../../services/lbreadcrumb.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-inventorydashboard',
+  templateUrl: './inventorydashboard.component.html',
+  styleUrls: ['./inventorydashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class InventorydashboardComponent implements OnInit {
 
   isAuthenticated: boolean = false;
   constructor(private router: Router, private authService: UserDataService,
@@ -21,19 +20,22 @@ export class DashboardComponent implements OnInit {
           this.isAuthenticated = true;
       }
       console.log("this is token: ", token);
-      this.breadcrumbService.setItems([]);
+      this.breadcrumbService.setItems([
+        {label: 'Inventory'}
+    ]);
     }
 
-    navigateToVendors(){
-          this.router.navigate(['vendors/all']);
+    addNewProduct(){
+          this.router.navigate(['add-product']);
     }
 
-    navigateToOrders(){
-      this.router.navigate(['orders']);
+    updateInventory(){
+      this.router.navigate(['update-inventory']);
     }
 
-    navigateToInventory(){
-      this.router.navigate(['inventory']);
+    addInventory(){
+      this.router.navigate(['add-inventory']);
     }
+
 
 }

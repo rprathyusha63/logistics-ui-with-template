@@ -40,6 +40,10 @@ import { DashboardComponent } from './logistics/components/dashboard/dashboard.c
 import { OrdersComponent } from './logistics/components/orders/orders.component';
 import { TodaysOrdersComponent } from './logistics/components/todays-orders/todays-orders.component';
 import { OrderDetailsComponent } from './logistics/components/order-details/order-details.component';
+import { VendorCreateComponent } from './logistics/components/vendor-create/vendor-create.component';
+import { InventorydashboardComponent } from './logistics/components/inventorydashboard/inventorydashboard.component';
+import { AddProductComponent } from './logistics/components/add-product/add-product.component';
+import { AddInventoryComponent } from './logistics/components/add-inventory/add-inventory.component';
 
 @NgModule({
     imports: [
@@ -56,6 +60,10 @@ import { OrderDetailsComponent } from './logistics/components/order-details/orde
                     {path:'orders' , component:OrdersComponent},
                     {path:'orders-today' , component:TodaysOrdersComponent},
                     {path:'orderDetails' , component:OrderDetailsComponent},
+                    {path:'create-vendor' , component:VendorCreateComponent},
+                    {path:'inventory' , component:InventorydashboardComponent},
+                    {path:'add-product' , component:AddProductComponent},
+                    {path:'add-inventory' , component:AddInventoryComponent},
                     {path: 'uikit/formlayout', component: FormLayoutDemoComponent},
                     {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},
                     {path: 'uikit/invalidstate', component: InvalidStateDemoComponent},
