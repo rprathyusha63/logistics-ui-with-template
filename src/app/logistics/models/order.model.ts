@@ -24,7 +24,6 @@ export class Order {
         public paymentMode?: String,
         public billingAddress?: String,
         public paymentConfirmationNumber?: String,
-        public shippingNumber?: String,
         
         ){}
 }

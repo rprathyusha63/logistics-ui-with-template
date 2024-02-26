@@ -98,13 +98,6 @@
                 [(ngModel)]="order.shippedOn"/>
             </div>
         </div>
-        <div class="field grid" *ngIf="order.shippingNumber">
-            <label htmlFor="shippingNumber" class="col-12 mb-2 md:col-2 md:mb-0">Shipped Number</label>
-            <div class="col-12 md:col-4">
-                <input pInputText id="shippingNumber" type="text" [readonly]="true" [disabled]="true"  name="shippingNumber"
-                [(ngModel)]="order.shippingNumber"/>
-            </div>
-        </div>
         <div class="field grid">
             <label htmlFor="orderStatus" class="col-12 mb-2 md:col-2 md:mb-0">Status</label>
             <div class="col-12 md:col-4">
@@ -116,7 +109,7 @@
                 </select>-->
             </div>
         </div>
-        <img [src]='barcodeImageUrl' />
+
     </div >
     <div *ngIf="!(orderStatus=='SHIPPED')">
     <button pButton pRipple label="Save" (click)="updateOrder()" class="mr-2 mb-2"></button>
@@ -127,5 +120,4 @@
     <button class="btn btn-warning btn-lg  col-sm-1" (click)="cancelEditOperation()">Cancel</button>
 
     </div> -->   
-    
 </div>

@@ -1,9 +1,8 @@
 
 <div class=" header surface-card p-6 shadow-2 border-round">
-    <p-toast></p-toast>
+
     <h4>Vendors</h4>
-    <div class="flex justify-content-between" *ngIf="dItems.length">
-        <button pButton pRipple label="Add New Vendor" (click)="addNewVendor()" class="mr-2 mb-2"></button>
+    <div class="flex justify-content-end p-fluid" *ngIf="dItems.length">
         <p-dropdown [options]="dItems" [(ngModel)]="selectedWarehouse" 
         optionLabel="warehouseName" placeholder="Select a Warehouse" 
         (onChange)="onWarehouseDropdownChange($event)"  >
@@ -56,5 +55,6 @@
                 </tr>
             </ng-template>
         </p-table>
-        
 </div>
+<br>
+<p-toast></p-toast>

@@ -12,7 +12,6 @@ import { WarehouseDataService } from '../../services/warehouse-data.service';
 import { WarehouseListResponse } from '../../models/warehouse-list-response.model';
 import { Warehouse } from '../../models/warehouse.model';
 import { LbreadcrumbService } from '../../services/lbreadcrumb.service';
-import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -28,7 +27,6 @@ export class VendorsComponent implements OnInit {
   userWarehouseName: string;
   selectedWarehouse: any;
   dItems:any[]=[];
-  subscription: Subscription;
 all:string;
   constructor(
     public vendorService: VendorDataService,
@@ -58,7 +56,8 @@ all:string;
     this.breadcrumbService.setItems([
       {label: 'Vendors'}
   ]);
-  
+  console.log('breadcrumb items')
+  console.log(this.breadcrumbService.getItems())
   }
   getAllWarehouses() {
     this.warehouseService.getAllWarehouses().subscribe(success => {
@@ -109,9 +108,6 @@ all:string;
     else {
       this.fetchVendorsListByWarehouseId(event.value.warehouseId)
     }
-  }
-  addNewVendor(){
-    this.router.navigate(['/create-vendor']);
   }
 }
 

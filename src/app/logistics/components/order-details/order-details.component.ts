@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Order } from '../../models/order.model';
 import { OrderDataService } from '../../services/order-data.service';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-order-details',
@@ -16,11 +15,8 @@ export class OrderDetailsComponent implements OnInit {
   message:String=''
   statuses:String[]=[];
   orderStatus:String;
-  image:any;
-  barcodeImageUrl:string;
   constructor( 
-    private orderService: OrderDataService,
-    private sanitizer: DomSanitizer ) { }
+    private orderService: OrderDataService ) { }
 
   ngOnInit(): void {
     this.statuses=['PENDING','PROCESSING','SHIPPED'];
@@ -32,17 +28,6 @@ export class OrderDetailsComponent implements OnInit {
       success => {
         this.order=success;
         this.orderStatus=this.order.status;
-        if(this.orderStatus==='SHIPPED' && this.order.shippingNumber.length){
-          this.orderService.getBarcode(this.order.orderId)
-          .subscribe((response :any) => {
-          
-            const reader = new FileReader();
-            reader.onload = (event: any) => {
-              this.barcodeImageUrl = event.target.result;
-            };
-            reader.readAsDataURL(response);
-          });
-        }
       }
     )
   }
@@ -58,17 +43,6 @@ export class OrderDetailsComponent implements OnInit {
     this.orderService.updateOrder(this.order).subscribe(
       success => {
        this.getOrderById();
-       if(this.order.status=='SHIPPED' && this.order.shippingNumber.length){
-        this.orderService.getBarcode(this.order.orderId)
-        .subscribe((response :any) => {
-        
-          const reader = new FileReader();
-          reader.onload = (event: any) => {
-            this.barcodeImageUrl = event.target.result;
-          };
-          reader.readAsDataURL(response);
-        });
-       }
         this.message=`Updated order with Id ${this.order.orderId}`;
         setTimeout(()=>{
           this.message='';
@@ -82,10 +56,7 @@ export class OrderDetailsComponent implements OnInit {
         },2000)
         this.editable=false;
       });
-     
-
       }
-      
     
   }
 

@@ -3,13 +3,12 @@ import { Injectable } from '@angular/core';
 import { VendorListResponse } from '../models/vendor-list-response.model';
 import { environment } from '../environments/environment';
 import { Vendor } from '../models/vendor.model';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VendorDataService {
-  vendorCreationStatus:boolean;
+
   backendUrl = environment.baseUrl;
   httpOptions = {
     // withCredentials: true,
@@ -19,7 +18,7 @@ export class VendorDataService {
     }),
 }
 
-  constructor(private http:HttpClient, private router:Router) { }
+  constructor(private http:HttpClient) { }
 
   getAllVendors(){
     return this.http.get<VendorListResponse[]>(`${this.backendUrl}/vendors`, this.httpOptions);
@@ -40,20 +39,7 @@ export class VendorDataService {
   }
 
   saveVendor(vendor: Vendor){
-    this.vendorCreationStatus=false;
-    this.http.post<Vendor>(`${this.backendUrl}/vendors`,vendor, this.httpOptions).subscribe(
-      success=>{
-        this.vendorCreationStatus=true;
-        this.router.navigate(['/vendors/all']);
-      },error =>{
-        this.vendorCreationStatus=false;
-      }
-    );
+    return this.http.post<Vendor>(`${this.backendUrl}/vendors`,vendor, this.httpOptions);
   }
-getVendorCreationStatus():boolean{
-  return this.vendorCreationStatus;
-}
-setVendorCreationStatus(status){
-  this.vendorCreationStatus=status;
-}
+
 }

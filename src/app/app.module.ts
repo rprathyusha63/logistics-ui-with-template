@@ -166,11 +166,6 @@ import { LtopbarComponent } from './logistics/components/ltopbar/ltopbar.compone
 import { OrdersComponent } from './logistics/components/orders/orders.component';
 import { TodaysOrdersComponent } from './logistics/components/todays-orders/todays-orders.component';
 import { OrderDetailsComponent } from './logistics/components/order-details/order-details.component';
-import { VendorCreateComponent } from './logistics/components/vendor-create/vendor-create.component';
-import { InventorydashboardComponent } from './logistics/components/inventorydashboard/inventorydashboard.component';
-import { AddProductComponent } from './logistics/components/add-product/add-product.component';
-import { AddInventoryComponent } from './logistics/components/add-inventory/add-inventory.component';
-import { UpdateInventoryComponent } from './logistics/components/update-inventory/update-inventory.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -321,11 +316,6 @@ FullCalendarModule.registerPlugins([
         OrdersComponent,
         TodaysOrdersComponent,
         OrderDetailsComponent,
-        VendorCreateComponent,
-        InventorydashboardComponent,
-        AddProductComponent,
-        AddInventoryComponent,
-        UpdateInventoryComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
