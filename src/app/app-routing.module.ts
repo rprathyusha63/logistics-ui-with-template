@@ -44,6 +44,7 @@ import { VendorCreateComponent } from './logistics/components/vendor-create/vend
 import { InventorydashboardComponent } from './logistics/components/inventorydashboard/inventorydashboard.component';
 import { AddProductComponent } from './logistics/components/add-product/add-product.component';
 import { AddInventoryComponent } from './logistics/components/add-inventory/add-inventory.component';
+import { AuthGuardService } from './logistics/authguard/auth-guard.service';
 
 @NgModule({
     imports: [
@@ -52,18 +53,18 @@ import { AddInventoryComponent } from './logistics/components/add-inventory/add-
                 path: '', component: AppMainComponent,
                 children: [
                     {path: '', component: LoginComponent},
-                    {path: 'dashboard', component: DashboardComponent},
-                    {path: 'vendors/:all', component: VendorsComponent},
-                    {path:'productsForVendor' , component:VendorProductsComponent},
-                    {path:'vendorDetails/:vendorId' , component:VendorDetailsComponent},
-                    {path:'productDetails' , component:ProductDetailsComponent},
-                    {path:'orders' , component:OrdersComponent},
-                    {path:'orders-today' , component:TodaysOrdersComponent},
-                    {path:'orderDetails' , component:OrderDetailsComponent},
-                    {path:'create-vendor' , component:VendorCreateComponent},
-                    {path:'inventory' , component:InventorydashboardComponent},
-                    {path:'add-product' , component:AddProductComponent},
-                    {path:'add-inventory' , component:AddInventoryComponent},
+                    {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService]},
+                    {path: 'vendors/:all', component: VendorsComponent, canActivate: [AuthGuardService]},
+                    {path:'productsForVendor' , component:VendorProductsComponent, canActivate: [AuthGuardService]},
+                    {path:'vendorDetails/:vendorId' , component:VendorDetailsComponent, canActivate: [AuthGuardService]},
+                    {path:'productDetails' , component:ProductDetailsComponent, canActivate: [AuthGuardService]},
+                    {path:'orders' , component:OrdersComponent, canActivate: [AuthGuardService]},
+                    {path:'orders-today' , component:TodaysOrdersComponent, canActivate: [AuthGuardService]},
+                    {path:'orderDetails' , component:OrderDetailsComponent, canActivate: [AuthGuardService]},
+                    {path:'create-vendor' , component:VendorCreateComponent, canActivate: [AuthGuardService]},
+                    {path:'inventory' , component:InventorydashboardComponent, canActivate: [AuthGuardService]},
+                    {path:'add-product' , component:AddProductComponent, canActivate: [AuthGuardService]},
+                    {path:'add-inventory' , component:AddInventoryComponent, canActivate: [AuthGuardService]},
                     {path: 'uikit/formlayout', component: FormLayoutDemoComponent},
                     {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},
                     {path: 'uikit/invalidstate', component: InvalidStateDemoComponent},
