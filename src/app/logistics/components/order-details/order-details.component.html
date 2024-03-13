@@ -119,7 +119,7 @@
         <img [src]='barcodeImageUrl' />
     </div >
     <div *ngIf="!(orderStatus=='SHIPPED')">
-    <button pButton pRipple label="Save" (click)="updateOrder()" class="mr-2 mb-2"></button>
+    <button pButton pRipple label="Save" (click)="openConfirmationDialog()" class="mr-2 mb-2"></button>
 	<button pButton pRipple label="Cancel" (click)="cancelEditOperation()" class="mr-2 mb-2"></button>
     </div>
     <!--<div class="form-group row">
@@ -127,5 +127,5 @@
     <button class="btn btn-warning btn-lg  col-sm-1" (click)="cancelEditOperation()">Cancel</button>
 
     </div> -->   
-    
+    <!--<button pButton pRipple (click)="openConfirmationDialog()" label="Open Confirmation Dialog" class="mr-2 mb-2"></button>-->
 </div>

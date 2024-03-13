@@ -5,6 +5,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {AppRoutingModule} from './app-routing.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 // PrimeNG Components for demos
 import {AccordionModule} from 'primeng/accordion';
@@ -171,6 +172,7 @@ import { InventorydashboardComponent } from './logistics/components/inventorydas
 import { AddProductComponent } from './logistics/components/add-product/add-product.component';
 import { AddInventoryComponent } from './logistics/components/add-inventory/add-inventory.component';
 import { UpdateInventoryComponent } from './logistics/components/update-inventory/update-inventory.component';
+import { OrderUpdateConfirmationDialogComponent } from './logistics/components/order-update-confirmation-dialog/order-update-confirmation-dialog.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -265,7 +267,8 @@ FullCalendarModule.registerPlugins([
         TreeModule,
         TreeTableModule,
         VirtualScrollerModule,
-        AppCodeModule
+        AppCodeModule,
+        MatDialogModule
     ],
     declarations: [
         AppComponent,
@@ -326,6 +329,7 @@ FullCalendarModule.registerPlugins([
         AddProductComponent,
         AddInventoryComponent,
         UpdateInventoryComponent,
+        OrderUpdateConfirmationDialogComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

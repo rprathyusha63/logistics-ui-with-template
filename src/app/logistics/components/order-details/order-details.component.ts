@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Order } from '../../models/order.model';
 import { OrderDataService } from '../../services/order-data.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { OrderUpdateConfirmationDialogComponent } from '../order-update-confirmation-dialog/order-update-confirmation-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-order-details',
@@ -20,7 +22,8 @@ export class OrderDetailsComponent implements OnInit {
   barcodeImageUrl:string;
   constructor( 
     private orderService: OrderDataService,
-    private sanitizer: DomSanitizer ) { }
+    private sanitizer: DomSanitizer,
+    public dialog: MatDialog ) { }
 
   ngOnInit(): void {
     this.statuses=['PENDING','PROCESSING','SHIPPED'];
@@ -84,6 +87,22 @@ export class OrderDetailsComponent implements OnInit {
       });
      
 
+      }
+
+      openConfirmationDialog(): void {
+        const dialogRef = this.dialog.open(OrderUpdateConfirmationDialogComponent, {
+          width: '400px',
+          data: { title: 'Confirmation', message: 'Are you sure you want to proceed?' }
+        });
+    
+        dialogRef.afterClosed().subscribe(result => {
+          if (result) {
+            this.updateOrder();
+          } else {
+            // User clicked No or closed the dialog
+            // Handle accordingly
+          }
+        });
       }
       
     
