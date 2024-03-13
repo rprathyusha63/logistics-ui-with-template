@@ -90,20 +90,22 @@ export class OrderDetailsComponent implements OnInit {
       }
 
       openConfirmationDialog(): void {
+        if(this.order.status == 'SHIPPED'){
         const dialogRef = this.dialog.open(OrderUpdateConfirmationDialogComponent, {
           width: '400px',
-          data: { title: 'Confirmation', message: 'Are you sure you want to proceed?' }
+          data: { title: 'Confirm', message: 'Are you sure you want to proceed? Once moved to Shipped, Status cannot be changed' }
         });
     
         dialogRef.afterClosed().subscribe(result => {
           if (result) {
             this.updateOrder();
           } else {
-            // User clicked No or closed the dialog
-            // Handle accordingly
           }
         });
+      } else{
+        this.updateOrder();
       }
+    }
       
     
   }
