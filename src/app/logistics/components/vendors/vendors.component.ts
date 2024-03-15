@@ -13,6 +13,8 @@ import { WarehouseListResponse } from '../../models/warehouse-list-response.mode
 import { Warehouse } from '../../models/warehouse.model';
 import { LbreadcrumbService } from '../../services/lbreadcrumb.service';
 import { Subscription } from 'rxjs';
+import { VendorCreateComponent } from '../vendor-create/vendor-create.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -38,7 +40,8 @@ all:string;
     public userService: UserDataService,
     public warehouseService: WarehouseDataService,
     public breadcrumbService:LbreadcrumbService,
-    public route:ActivatedRoute
+    public route:ActivatedRoute,
+    public dialog: MatDialog
     //private fb: FormBuilder,
   ) { }
 
@@ -110,8 +113,21 @@ all:string;
       this.fetchVendorsListByWarehouseId(event.value.warehouseId)
     }
   }
-  addNewVendor(){
+  /*addNewVendor(){
     this.router.navigate(['/create-vendor']);
-  }
+  }*/
+  addNewVendor(): void {
+    
+    const dialogRef = this.dialog.open(VendorCreateComponent, {
+      width: '600px',
+      //data: { title: 'Confirm', message: 'Are you sure you want to proceed? Once moved to Shipped, Status cannot be changed' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.fetchVendorsList();
+    });
+  
+}
+  
 }
 

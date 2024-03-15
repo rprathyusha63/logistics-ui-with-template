@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { WarehouseListResponse } from '../../models/warehouse-list-response.model';
 import { VendorDataService } from '../../services/vendor-data.service';
 import { MessageService } from 'primeng/api';
@@ -7,7 +7,7 @@ import { WarehouseDataService } from '../../services/warehouse-data.service';
 import { Warehouse } from '../../models/warehouse.model';
 import { Vendor } from '../../models/vendor.model';
 import { LbreadcrumbService } from '../../services/lbreadcrumb.service';
-
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-vendor-create',
   templateUrl: './vendor-create.component.html',
@@ -34,7 +34,9 @@ export class VendorCreateComponent implements OnInit {
     private messageService: MessageService,
     public router: Router,
     public warehouseService: WarehouseDataService,
-    public breadcrumbService: LbreadcrumbService
+    public breadcrumbService: LbreadcrumbService,
+    public dialogRef: MatDialogRef<VendorCreateComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
 
@@ -55,12 +57,20 @@ export class VendorCreateComponent implements OnInit {
   }
   addVendor() {
     this.vendor.warehouseId = this.selectedWarehouse.warehouseId;
-    this.vendorService.saveVendor(this.vendor);
-    this.messageService.add({
-        severity: 'success',
-        summary: 'Vendor created successfully',
-        life: 10000
-      });
+    this.vendorService.saveVendor(this.vendor).subscribe(
+      success => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Vendor created successfully',
+          life: 10000
+        });
+        this.dialogRef.close(true);
+      },error =>{
+
+      }
+    );
+        
+    
   }
 
   cancelEditOperation() {
@@ -72,5 +82,10 @@ export class VendorCreateComponent implements OnInit {
     this.vendor.location = null;
     this.vendor.type = null;
     this.selectedWarehouse = null;
+    
+  }
+
+  closeDialog(): void {
+    this.dialogRef.close();
   }
 }

@@ -1,16 +1,23 @@
-<div class="header surface-card p-6 pt-5 shadow-2 border-round">
-    <h4>Add New Vendor</h4>
-    <div class="card p-fluid">
+<!--<div class="header surface-card p-6 pt-5 shadow-2 border-round">-->
+    <div mat-dialog-title>
+        <div class="flex justify-content-between">
+        <h3>Add New Vendor</h3>
+        <i class="pi pi-times" (click)="closeDialog()"></i>
+    </div>
+    </div>
+    
+    <mat-dialog-content >
+    <div class="center p-fluid">
         <div class="field grid">
             <label htmlFor="businessName" class="col-12 mb-2 md:col-2 md:mb-0">Name</label>
-            <div class="col-12 md:col-4">
+            <div class="col-12 md:col-8">
                 <input pInputText id="businessName" type="text" name="businessName"
                 [(ngModel)]="vendor.businessName"/>
             </div>
         </div>
         <div class="field grid">
             <label htmlFor="warehouse" class="col-12 mb-2 md:col-2 md:mb-0">Warehouse</label>
-            <div class="col-12 md:col-4">
+            <div class="col-12 md:col-8">
                 <p-dropdown [options]="dItems" [(ngModel)]="selectedWarehouse" 
         optionLabel="warehouseName" placeholder="Select a Warehouse">
             <ng-template pTemplate="selectedWarehouse">
@@ -29,14 +36,14 @@
         </div>
         <div class="field grid">
             <label htmlFor="type" class="col-12 mb-2 md:col-2 md:mb-0">Type</label>
-            <div class="col-12 md:col-4">
+            <div class="col-12 md:col-8">
                 <p-dropdown [options]="types"  placeholder="Select a Type" [(ngModel)]="vendor.type" [disabled]="false"></p-dropdown>
             </div>
         </div>
 
         <div class="field grid">
             <label htmlFor="email" class="col-12 mb-2 md:col-2 md:mb-0">Email</label>
-            <div class="col-12 md:col-4">
+            <div class="col-12 md:col-8">
                 <input pInputText id="email" type="text" [readonly]="false" [disabled]="false"  name="email"
                 [(ngModel)]="vendor.email"/>
             </div>
@@ -44,7 +51,7 @@
 
         <div class="field grid">
             <label htmlFor="phone" class="col-12 mb-2 md:col-2 md:mb-0">Phone</label>
-            <div class="col-12 md:col-4">
+            <div class="col-12 md:col-8">
                 <input pInputText id="phone" type="text" [readonly]="false" [disabled]="false"  name="phone"
                 [(ngModel)]="vendor.phone"/>
             </div>
@@ -52,15 +59,18 @@
 
         <div class="field grid">
             <label htmlFor="location" class="col-12 mb-2 md:col-2 md:mb-0">Location</label>
-            <div class="col-12 md:col-4">
+            <div class="col-12 md:col-8">
                 <input pInputText id="location" type="text" name="location"
                 [(ngModel)]="vendor.location"/>
             </div>
         </div>
     </div>
+</mat-dialog-content>
     <div>
+        <mat-dialog-actions>
     <button pButton pRipple label="Save" (click)="addVendor()" class="mr-2 mb-2"></button>
 	<button pButton pRipple label="Cancel" (click)="cancelEditOperation()" class="mr-2 mb-2"></button>
-    </div>
-    <p-toast></p-toast> 
+</mat-dialog-actions>    
 </div>
+    <p-toast></p-toast> 
+<!--</div>-->
